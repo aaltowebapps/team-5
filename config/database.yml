@@ -37,6 +37,6 @@ production:
   reconnect: false
   database: FeelTask_production
   pool: 5
-  username: root
-  password:
+  username: feeltask
+  password: iac-yogh-ga-dri-
   socket: /tmp/mysql.sock

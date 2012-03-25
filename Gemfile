@@ -21,6 +21,15 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'jquery-mobile-rails'
+
+gem 'devise'
+
+group :development do
+  gem 'vmc'
+end
+
+gem 'cloudfoundry-jquery-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -37,4 +46,3 @@ gem 'capistrano'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-gem 'jquery-mobile-rails'
