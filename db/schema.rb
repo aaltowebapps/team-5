@@ -11,6 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20120325200201) do
+
+  create_table "todos", :force => true do |t|
+    t.integer  "context_id"
+    t.integer  "project_id"
+    t.integer  "recurring_todo_id"
+    t.integer  "user_id"
+    t.string   "description"
+    t.string   "state"
+    t.text     "notes"
+    t.datetime "due"
+    t.datetime "completed_at"
+    t.datetime "show_from"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
 end
