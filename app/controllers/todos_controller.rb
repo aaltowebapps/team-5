@@ -6,7 +6,8 @@ class TodosController < ApplicationController
   # GET /todos.json
   def index
     @todos = Todo.all
-
+    remote_todos = TracksAPI.new("feeltask", "feeltask").todos
+    @todos << remote_todos
     respond_with @todos
   end
 

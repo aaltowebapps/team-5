@@ -58,6 +58,9 @@ GEM
       multi_json (~> 1.0)
     highline (1.6.11)
     hike (1.2.1)
+    httparty (0.8.1)
+      multi_json
+      multi_xml
     i18n (0.6.0)
     interact (0.3)
     journey (1.0.3)
@@ -77,6 +80,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.18)
     multi_json (1.1.0)
+    multi_xml (0.4.2)
     mysql2 (0.3.11)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
@@ -153,6 +157,7 @@ DEPENDENCIES
   cloudfoundry-jquery-rails
   coffee-rails (~> 3.2.1)
   devise
+  httparty
   jquery-mobile-rails
   jquery-rails
   mysql2

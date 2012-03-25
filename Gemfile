@@ -29,6 +29,8 @@ group :development do
   gem 'vmc'
 end
 
+# https://github.com/jnunemaker/httparty
+gem 'httparty'
 gem 'cloudfoundry-jquery-rails'
 
 # To use ActiveModel has_secure_password
