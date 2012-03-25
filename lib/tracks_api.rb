@@ -4,7 +4,7 @@ require 'json'
 class TracksAPI
   include HTTParty
   format :xml
-  base_uri 'kulti.fi/tracks'
+  base_uri 'http://kulti.fi/tracks'
 
   def initialize(username, password)
     @auth = {:username => username, :password => password}
