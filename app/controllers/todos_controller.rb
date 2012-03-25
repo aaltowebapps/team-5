@@ -5,10 +5,10 @@ class TodosController < ApplicationController
 
   # GET /todos.json
   def index
-    @todos = Todo.all
+    #@todos = Todo.all
     remote_todos = TracksAPI.new("feeltask", "feeltask").todos
-    @todos << remote_todos
-    respond_with @todos
+    # TODO: Combine fetched todos with our database?
+    respond_with remote_todos
   end
 
   # GET /todos/1.json

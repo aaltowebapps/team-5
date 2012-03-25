@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-
   $.get('http://kulti.fi/tracks/todos.xml?callback=?',
           function (xml) {
             $(xml).find("todo").each(function () {

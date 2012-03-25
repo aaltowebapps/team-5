@@ -13,6 +13,6 @@ class TracksAPI
 
   def todos(options={})
     options.merge!({:basic_auth => @auth})
-    self.class.get("/todos.xml", options).to_json
+    self.class.get("/todos.xml", options)
   end
 end
