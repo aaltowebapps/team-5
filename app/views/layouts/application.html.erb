@@ -14,8 +14,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body onload="window.scrollTo(0, 1);">
-<!-- action start !-->
-<%= yield %>
-<!-- action end !-->
+<div data-role="page" id="<%= url_for(:only_path => true).parameterize %>" rel="external" or data-ajax="false">
+  <div data-theme="a" data-role="header">
+    <h1>
+      FeelTask
+    </h1>
+  </div>
+  <div data-role="content">
+    <p class="notice"><%= notice %></p>
+
+    <p class="alert"><%= alert %></p>
+    <!-- action start !-->
+    <%= yield %>
+    <!-- action end !-->
+  </div>
+</div>
 </body>
 </html>
