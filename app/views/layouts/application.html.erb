@@ -2,13 +2,20 @@
 <html>
 <head>
   <title>FeelTask</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable = no"/>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+  <meta name="description" content="FeelTask. Mobile task management powered by Tracks."/>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= stylesheet_link_tag "http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.css" %>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.js" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-
+<body onload="window.scrollTo(0, 1);">
+<!-- action start !-->
 <%= yield %>
-
+<!-- action end !-->
 </body>
 </html>
