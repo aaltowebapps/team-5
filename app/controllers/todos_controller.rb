@@ -35,9 +35,9 @@ class TodosController < ApplicationController
     @todo = Todo.new(params[:todo])
     respond_to do |format|
       if @todo.save
-        format.json { render json: @todo, status: :created, location: @todo }
+        format.json { render :json => @todo, :status => :created, :location => @todo }
       else
-        format.json { render json: @todo.errors, status: :unprocessable_entity }
+        format.json { render :json => @todo.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -50,7 +50,7 @@ class TodosController < ApplicationController
       if @todo.update_attributes(params[:todo])
         format.json { head :no_content }
       else
-        format.json { render json: @todo.errors, status: :unprocessable_entity }
+        format.json { render :json => @todo.errors, :status => :unprocessable_entity }
       end
     end
   end
