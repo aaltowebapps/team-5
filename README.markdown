@@ -35,6 +35,10 @@ Cloudfoundry has free cloud service for deploying apps.
 1. Goto link below and register.
 1. vmc gem is used for communicating to cloudfoundry. this should be installed with bundle install.
 
+When updating to cloudfoundry, use
+
+bundle exec rake assets:precompile; vmc update feeltask
+
 #### Links
 
 * http://start.cloudfoundry.com/getting-started.html
