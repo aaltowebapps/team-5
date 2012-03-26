@@ -2,27 +2,32 @@
   <h2>Todos</h2>
   <ul data-role="listview" data-theme="b" id="todos">
   </ul>
-  <!-- Example show of todo id 47, which is loaded in server side. !-->
-  <h2>Show todo 47</h2>
+  <!-- Example show of todo id 47, which is loaded in serve side. !-->
+  <div class="todo">
+    <h2>Todo <%= @todo["id"] %>: <%= @todo["description"] %></h2>
 
-  <div>
-    <%= @todo["description"] %>
-  </div>
+    <div data-role="collapsible-set" data-theme="" data-content-theme="">
+      <div data-role="collapsible" data-collapsed="false">
+        <h3>
+          Details
+        </h3>
 
-  <div data-role="collapsible-set" data-theme="" data-content-theme="">
-    <div data-role="collapsible" data-collapsed="false">
-      <h3>
-        Details
-      </h3>
+        <div>Created: <%= @todo["created_at"] %></div>
 
-      <div>Created: <%= @todo["created_at"] %></div>
-
-      <div>Notes: <%= @todo["notes"] %></div>
-      <div>Due: <%= @todo["due"] %></div>
-      <div>Context: <%= @todo["context_id"] %></div>
-      <div>Project: <%= @todo["project_id"] %></div>
+        <div>Notes: <%= @todo["notes"] %></div>
+        <div>Due: <%= @todo["due"] %></div>
+        <div>Context: <%= @todo["context_id"] %></div>
+        <div>Project: <%= @todo["project_id"] %></div>
+      </div>
     </div>
   </div>
+  <h2>Motions</h2>
+  <label for="sliderX">X Acceleration (Roll)</label>
+  <input type="range" name="sliderX" id="sliderX" value="0" min="-10" max="10" data-theme="a"/>
+  <label for="sliderY">Y Acceleration (Pitch)</label>
+  <input type="range" name="sliderY" id="sliderY" value="0" min="-10" max="10" data-theme="b"/>
 
+  <label for="sliderZ">Z Acceleration (<strike>Yaw</strike> Face up/down)</label>
+  <input type="range" name="sliderZ" id="sliderZ" value="0" min="-10" max="10" data-theme="c"/>
 
 </div>
