@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html manifest="timetracker.appcache">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>
+  </title>
+  <link rel="stylesheet" href="stylesheets/jquery.mobile-1.0.1.min.css"/>
+  <style>
+      /* App custom styles */
+  </style>
+  <script src="javascripts/jquery.min.js">
+  </script>
+  <script src="javascripts/jquery.mobile-1.0.1.min.js">
+  </script>
+</head>
+<body>
+<div data-role="page" id="page1">
+  <div data-theme="a" data-role="header">
+    <h3>
+      TimeTracker
+    </h3>
+  </div>
+  <div data-role="navbar" data-iconpos="right">
+      <ul>
+          <li>
+              <a href="#page2" data-theme="" data-icon="plus" class="ui-btn-active">
+                  Add new
+              </a>
+          </li>
+      </ul>
+  </div>
+  <div data-role="content">
+    <h2>
+      Tasks
+    </h2>
+
+    <div class="ui-grid-a">
+      <div class="ui-block-a">
+        <div>
+          <b>
+            Task
+            <br/>
+            <br/>
+          </b>
+        </div>
+      </div>
+      <div class="ui-block-b">
+        <div>
+          <b>
+            Duration
+            <br/>
+            <br/>
+          </b>
+        </div>
+      </div>
+      <div class="ui-block-a">
+      </div>
+      <div class="ui-block-b">
+      </div>
+      <div class="ui-block-a">
+      </div>
+      <div class="ui-block-b">
+      </div>
+      <div class="ui-block-a">
+      </div>
+      <div class="ui-block-b">
+      </div>
+    </div>
+  </div>
+  <div data-theme="a" data-role="footer" data-position="fixed">
+    <h3>
+      Total time 00:33:33
+    </h3>
+
+    <div data-theme="a" data-role="footer">
+      <h3>
+        Average time 00:01:05
+      </h3>
+    </div>
+  </div>
+</div>
+<div data-role="page" id="page2">
+  <div data-theme="a" data-role="header">
+    <h3>
+      TimeTracker
+    </h3>
+
+    <div data-role="navbar" data-iconpos="left">
+      <ul>
+        <li>
+          <a href="#page1" data-theme="a" data-icon="back" class="ui-btn-active">
+            Back
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div data-role="content">
+    <h2>
+      Track Time
+    </h2>
+
+    <div data-role="fieldcontain">
+      <fieldset data-role="controlgroup">
+        <label for="textinput1">
+          Title
+        </label>
+        <input id="textinput1" placeholder="" value="Work" type="text"/>
+      </fieldset>
+    </div>
+    <div>
+      <b>
+        Elapsed time: 00:00:00
+        <br/>
+        <br/>
+      </b>
+    </div>
+    <div data-role="fieldcontain">
+      <fieldset data-role="controlgroup">
+        <label for="toggleswitch1">
+          Toggle timer
+        </label>
+        <select name="toggleswitch1" id="toggleswitch1" data-theme="" data-role="slider">
+          <option value="off">
+            Start
+          </option>
+          <option value="on">
+            Stop
+          </option>
+        </select>
+      </fieldset>
+    </div>
+  </div>
+</div>
+<script>
+  //App custom javascript
+</script>
+</body>
+</html>
