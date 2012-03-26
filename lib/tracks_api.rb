@@ -1,6 +1,7 @@
 require 'httparty'
 require 'json'
 
+# This class is used to use REST API interface provided by Tracks application.
 class TracksAPI
   include HTTParty
   format :xml

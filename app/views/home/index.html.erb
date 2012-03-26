@@ -2,4 +2,27 @@
   <h2>Todos</h2>
   <ul data-role="listview" data-theme="b" id="todos">
   </ul>
+  <!-- Example show of todo id 47, which is loaded in server side. !-->
+  <h2>Show todo 47</h2>
+
+  <div>
+    <%= @todo["description"] %>
+  </div>
+
+  <div data-role="collapsible-set" data-theme="" data-content-theme="">
+    <div data-role="collapsible" data-collapsed="false">
+      <h3>
+        Details
+      </h3>
+
+      <div>Created: <%= @todo["created_at"] %></div>
+
+      <div>Notes: <%= @todo["notes"] %></div>
+      <div>Due: <%= @todo["due"] %></div>
+      <div>Context: <%= @todo["context_id"] %></div>
+      <div>Project: <%= @todo["project_id"] %></div>
+    </div>
+  </div>
+
+
 </div>
