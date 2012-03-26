@@ -6,28 +6,21 @@ class TodosController < ApplicationController
   # GET /todos.json
   def index
     #@todos = Todo.all
-    remote_todos = TracksAPI.new("feeltask", "feeltask").todos
     # TODO: Combine fetched todos with our database?
-    respond_with remote_todos
+    @todos = TracksAPI.new("http://kulti.fi/tracks", "feeltask", "feeltask").todos
+    respond_with @todos
   end
 
   # GET /todos/1.json
   def show
-    @todo = Todo.find(params[:id])
-
-    respond_with :@todo
+    @todo = TracksAPI.new("http://kulti.fi/tracks", "feeltask", "feeltask").todo(params[:id])
+    respond_with @todo
   end
 
   # GET /todos/new.json
   def new
     @todo = Todo.new
-
     respond_with @todo
-  end
-
-  # GET /todos/1/edit
-  def edit
-    @todo = Todo.find(params[:id])
   end
 
   # POST /todos.json
@@ -44,7 +37,7 @@ class TodosController < ApplicationController
 
   # PUT /todos/1.json
   def update
-    @todo = Todo.find(params[:id])
+    @todo = TracksAPI.new("http://kulti.fi/tracks", "feeltask", "feeltask").todo(params[:id])
 
     respond_to do |format|
       if @todo.update_attributes(params[:todo])
