@@ -1,7 +1,12 @@
 CACHE MANIFEST
-# 2012-03-26 17:49
+# 2012-03-26 18:01
 
 CACHE:
 javascripts/jquery.min.js
 javascripts/jquery.mobile-1.0.1.min.js
 stylesheets/jquery.mobile-1.0.1.min.css
+images/ajax-loader.png
+images/icons-18-black.png
+images/icons-18-white.png
+images/icons-36-black.png
+images/icons-36-white.png
