@@ -5,8 +5,6 @@ class TodosController < ApplicationController
 
   # GET /todos.json
   def index
-    #@todos = Todo.all
-    # TODO: Combine fetched todos with our database?
     @todos = TracksAPI.new("http://kulti.fi/tracks", "feeltask", "feeltask").todos
     respond_with @todos
   end
@@ -19,6 +17,7 @@ class TodosController < ApplicationController
 
   # GET /todos/new.json
   def new
+    # We don't need api for new model.
     @todo = Todo.new
     respond_with @todo
   end
