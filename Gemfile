@@ -48,7 +48,7 @@ gem 'capistrano'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-gem 'factory_girl_rails'
+gem 'factory_girl_rails', :group => :test
 
 group :test do
   # Pretty printed test output
