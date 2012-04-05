@@ -50,4 +50,11 @@ gem 'capistrano'
 
 gem 'factory_girl_rails'
 
-gem 'test-unit'
+group :test do
+  # Pretty printed test output
+  gem 'turn', :require => false
+  #gem 'test-unit'
+  gem 'tconsole' # https://github.com/commondream/tconsole
+  # Test console is fast to run tests. just use bundle exec tconsole
+  gem 'minitest'
+end

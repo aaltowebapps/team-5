@@ -2,9 +2,13 @@ require 'httparty'
 require 'json'
 
 # This class is used to use REST API interface provided by Tracks application.
-class TracksAPI
+class TracksApi
   include HTTParty
   format :xml
+
+  DEFAULT_TRACKS_URI = "http://kulti.fi/tracks"
+  DEFAULT_USERNAME="feeltask"
+  DEFULT_PASSWORD="feeltask"
 
   # Initialize API with given Tracks username, password and url.
   def initialize(tracks_uri, username, password)
@@ -38,6 +42,10 @@ class TracksAPI
     else
       return nil
     end
+  end
+
+  def new_todo()
+    Todo.new
   end
 
 end

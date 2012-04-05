@@ -5,20 +5,19 @@ class TodosController < ApplicationController
 
   # GET /todos.json
   def index
-    @todos = TracksAPI.new("http://kulti.fi/tracks", "feeltask", "feeltask").todos
+    @todos = TracksApi.new("http://kulti.fi/tracks", "feeltask", "feeltask").todos
     respond_with @todos
   end
 
   # GET /todos/1.json
   def show
-    @todo = TracksAPI.new("http://kulti.fi/tracks", "feeltask", "feeltask").todo(params[:id])
+    @todo = TracksApi.new("http://kulti.fi/tracks", "feeltask", "feeltask").todo(params[:id])
     respond_with @todo
   end
 
   # GET /todos/new.json
   def new
-    # We don't need api for new model.
-    @todo = Todo.new
+    @todo = TracksApi.new("http://kulti.fi/tracks", "feeltask", "feeltask").new_todo
     respond_with @todo
   end
 
@@ -36,7 +35,7 @@ class TodosController < ApplicationController
 
   # PUT /todos/1.json
   def update
-    @todo = TracksAPI.new("http://kulti.fi/tracks", "feeltask", "feeltask").todo(params[:id])
+    @todo = TracksApi.new("http://kulti.fi/tracks", "feeltask", "feeltask").todo(params[:id])
 
     respond_to do |format|
       if @todo.update_attributes(params[:todo])
