@@ -6,6 +6,8 @@
 
 # Ignore bundler config
 /feeltask_backend/.bundle
+/feeltask_frontend/.bundle
+
 
 # Ignore the default SQLite database.
 /feeltask_backend/db/*.sqlite3
