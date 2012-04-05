@@ -5,16 +5,16 @@
 #   git config --global core.excludesfile ~/.gitignore_global
 
 # Ignore bundler config
-/.bundle
+/feeltask_backend/.bundle
 
 # Ignore the default SQLite database.
-/db/*.sqlite3
+/feeltask_backend/db/*.sqlite3
 
 # Ignore all logfiles and tempfiles.
-/log/*.log
-/tmp
+/feeltask_backend/log/*.log
+/feeltask_backend/tmp
 
 # Do not import idea prefs.
-/.idea
+/feeltask_backend/.idea
 
-/public/assets
+/feeltask_backend/public/assets
