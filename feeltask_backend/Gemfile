@@ -58,3 +58,5 @@ group :test do
   # Test console is fast to run tests. just use bundle exec tconsole
   gem 'minitest'
 end
+
+gem 'rack-jsonp-middleware', :require => 'rack/jsonp'
