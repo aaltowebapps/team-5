@@ -101,6 +101,8 @@ GEM
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
+    rack-cors (0.2.4)
+      rack
     rack-jsonp-middleware (0.0.5)
       rack
     rack-ssl (1.3.2)
@@ -178,6 +180,7 @@ DEPENDENCIES
   jquery-rails
   minitest
   mysql2
+  rack-cors
   rack-jsonp-middleware
   rails (= 3.2.2)
   sass-rails (~> 3.2.3)

@@ -59,6 +59,13 @@ module FeelTask
     config.assets.version = '1.0'
 
     config.middleware.use Rack::JSONP
-
+    config.middleware.use Rack::Cors do
+      allow do
+        origins '*'
+        resource '*',
+                 :headers => ['Origin', 'Accept', 'Content-Type'],
+                 :methods => [:get, :post, :put, :delete]
+      end
+    end
   end
 end
