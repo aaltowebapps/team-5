@@ -16,3 +16,5 @@
 
 # Do not import idea prefs.
 /.idea
+
+/public/assets
