@@ -1,13 +1,14 @@
 var loadTodos = function () {
-  console.log("Loading todos");
+  console.log("Loading todos...");
   var output = '';
   $.getJSON("/todos.json",
           function (data) {
+            console.log("Todos JSON returned, rendering.");
             $.each(data.todos, function (index, todo) {
               output += '<li>' + todo.description + '</li>';
             });
+            $('#todos').append(output).find('ul').listview('refresh');
           });
-  $('#todos').append(output).find('ul').listview('refresh');
 };
 
 function onDeviceMotion(event) {
@@ -26,7 +27,7 @@ function onDeviceMotion(event) {
 }
 
 $(document).ready(function () {
-  window.addEventListener("devicemotion", onDeviceMotion, false);
   loadTodos();
+  window.addEventListener("devicemotion", onDeviceMotion, false);
 });
 
