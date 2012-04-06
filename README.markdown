@@ -11,8 +11,4 @@ Other directories are for example exercises.
 
 Notice: Weekly reports and all other stuff is in wiki.
 
-
-
-
-
-
+Edited by Edward
