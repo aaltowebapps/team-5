@@ -13,11 +13,11 @@ Other directories are for exercises.
 
 ### Backend
 
-Backend is installed at feeltask.cloudfoundry.com
+Backend is installed at [feeltask.cloudfoundry.com](http://feeltask.cloudfoundry.com)
 
 ### Frontend
 
-FeelTask can be checked at feeltask_front.cloudfoundry.com
+FeelTask can be checked at [feeltask_front.cloudfoundry.com](http://feeltask_front.cloudfoundry.com)
 We will keep it updated with most working version of frontend.
 
 
