@@ -9,6 +9,18 @@ This is FeelTask by team 5.
 
 Other directories are for exercises.
 
+## Service location
+
+### Backend
+
+Backend is installed at feeltask.cloudfoundry.com
+
+### Frontend
+
+FeelTask can be checked at feeltask_front.cloudfoundry.com
+We will keep it updated with most working version of frontend.
+
+
 ## Notes
 
 Weekly reports and all other stuff is in wiki.
