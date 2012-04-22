@@ -21,3 +21,5 @@
 /feeltask_frontend/.idea
 
 /feeltask_backend/public/assets
+
+.idea/
