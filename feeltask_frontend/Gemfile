@@ -1,5 +1,7 @@
-source 'https://rubygems.org'
+source :rubygems
 
 gem 'sinatra'
 gem 'haml'
-gem 'vmc'
+gem 'vmc', :group => [:development, :production]
+gem 'shotgun', :group => :development
+gem 'manifesto'

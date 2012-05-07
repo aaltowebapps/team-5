@@ -1,0 +1,14 @@
+[required] {
+  border-color: #88a;
+  -webkit-box-shadow: 0 0 3px rgba(0, 0, 255, .5);
+}
+
+:invalid {
+  border-color: #e88;
+  -webkit-box-shadow: 0 0 5px rgba(255, 0, 0, .8);
+}
+
+input.invalid {
+  background: url(error.png) no-repeat 4px 6px;
+  padding-left: 30px;
+}
