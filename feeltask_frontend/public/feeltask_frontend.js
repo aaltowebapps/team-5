@@ -13,7 +13,7 @@ var loadTodos = function () {
             var count = 0;
             console.log("Todos returned, rendering...");
             $.each(data.todos, function (index, todo) {
-              output += '<li><a href="#">' + todo.description + '</a></li>';
+              output += '<li><a href="#show" onClick="sessionStorage.setItem(\'id\',' + todo.id + ');">' + todo.description + '</a></li>';
               count = count + 1;
             });
             $('#todosList').html(output);
@@ -40,6 +40,14 @@ function onDeviceMotion(event) {
 
 $(document).ready(function () {
   window.addEventListener("devicemotion", onDeviceMotion, false);
+
+  loadTodos();
+
+  $("#home").live('pageshow', function (event, ui) {
+    console.log("Home show. Previous page was:" + ui.prevPage);
+    loadTodos();
+  });
+
   $(this).ajaxStart(function () {
     $.mobile.showPageLoadingMsg();
   });
@@ -48,10 +56,11 @@ $(document).ready(function () {
     $.mobile.hidePageLoadingMsg();
   });
 
-  loadTodos();
 
-  $("#home").live('pageshow', function (event, ui) {
-    console.log("Home show");
-    loadTodos();
+  $("#show").live('pageshow', function (event, ui) {
+    var todo_id = sessionStorage.getItem("id");
+    console.log("Showing todo id=" + todo_id + " Previous page was:" + ui.prevPage);
+    $("#show_title").html("Showing todo " + todo_id);
   });
+
 });

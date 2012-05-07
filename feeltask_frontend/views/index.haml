@@ -1,7 +1,7 @@
 %div(data-role="page" id="home")
   = haml :header
 
-  %h2 Your tasks
+  %h2 Your todos
   %ul(data-role="listview" data-theme="d" id="todosList")
 
   %div(data-role="footer" data-position="fixed")
@@ -11,6 +11,14 @@
           %a(href="#motions") Motions
         %li
           %a(href="#add" data-icon="new") New Todo
+%div(data-role="page" id="show")
+  = haml :header
+
+  %h2#show_title Show todo
+  %p
+    Implement.
+
+  = haml :footer
 %div(data-role="page" id="add")
   = haml :header
 
