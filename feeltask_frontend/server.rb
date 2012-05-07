@@ -15,7 +15,7 @@ get '/' do
   haml :index, :layout => :layout
 end
 
-get '/manifest.appcache' do
+get '/dev_manifest.appcache' do
   headers 'Content-Type' => 'text/cache-manifest' # Must be served with this MIME type
   Manifesto.cache :timestamp => false
 end
