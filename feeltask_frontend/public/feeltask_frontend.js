@@ -30,7 +30,7 @@ var loadTodos = function () {
               output += '<li><a href="#show" onClick="sessionStorage.setItem(\'id\',' + todo.id + ');">' + todo.description + '</a></li>';
               count = count + 1;
             });
-            $('#todosList').html(output);
+            $('#todosList').append(output);
             $('#todosList').listview('refresh');
             console.log("Todos returned, rendered " + count + " todos.");
 

@@ -2,7 +2,9 @@
   = haml :header
 
   %h2 Your todos
-  %ul#todosList(data-role="listview" data-theme="d")
+  %ul(data-role="listview" data-theme="d" id="todosList")
+    %li
+      %a(href="#") Osta ruokaa 2
 
   %div(data-role="footer" data-position="fixed")
     %div(data-role="navbar")
@@ -29,6 +31,7 @@
 
   = haml :footer
   
+/Start motions page
   
 %div(data-role="page" id="motions")
   = haml :header
