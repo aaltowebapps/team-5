@@ -5,10 +5,24 @@ if (typeof(console) === 'undefined') {
   };
 }
 
+/* use a function for the exact format desired... */
+function ISODateString(d) {
+  function pad(n) {
+    return n < 10 ? '0' + n : n
+  }
+
+  return d.getUTCFullYear() + '-'
+          + pad(d.getUTCMonth() + 1) + '-'
+          + pad(d.getUTCDate()) + 'T'
+          + pad(d.getUTCHours()) + ':'
+          + pad(d.getUTCMinutes()) + ':'
+          + pad(d.getUTCSeconds()) + 'Z'
+}
+
 var loadTodos = function () {
   console.log("Loading todos from backend...");
   var output = '';
-  $.getJSON("http://feeltask.cloudfoundry.com/todos.json",
+  $.getJSON("http://feeltask.cloudfoundry.com/todos.json?date="+ISODateString(new Date()),
           function (data) {
             var count = 0;
             console.log("Todos returned, rendering...");
