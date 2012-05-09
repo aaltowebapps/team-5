@@ -26,4 +26,10 @@ class TracksApiTest < ActiveSupport::TestCase
     assert_not_nil new_todo
   end
 
+  test "filter by date string" do
+    todos=@api.todos
+    todos2=@api.filter_todos_by_date(todos, "2010-10-29T00:00:00+00:00")
+    assert todos2.empty?
+  end
+
 end
