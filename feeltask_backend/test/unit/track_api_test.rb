@@ -28,8 +28,8 @@ class TracksApiTest < ActiveSupport::TestCase
 
   test "filter by date string" do
     todos=@api.todos
-    todos2=@api.filter_todos_by_date(todos, "2010-10-29T00:00:00+00:00")
-    assert todos2.empty?
+    todos2=@api.filter_todos_by_date(todos, "2012-05-08T23:00:00Z")
+    assert todos2.size == 1
   end
 
 end

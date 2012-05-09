@@ -51,11 +51,10 @@ class TracksApi
   def filter_todos_by_date(todos, date)
     return todos unless date
     filtered_todos=[]
-    date=Date.parse(date) if date.is_a? String
-    date=date.to_date if date.is_a? Time
+    date=Time.zone.parse(date) if date.is_a? String
     todos.parsed_response["todos"].each do |todo|
       if todo
-        todo_due = todo["due"] ? todo["due"].to_date : nil
+        todo_due = todo["due"] ? todo["due"].utc.in_time_zone("Helsinki").to_date : nil
         if todo_due == date || todo_due
           filtered_todos<<todo
         end
