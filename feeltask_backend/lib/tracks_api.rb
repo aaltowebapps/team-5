@@ -48,4 +48,19 @@ class TracksApi
     Todo.new
   end
 
+  def filter_todos_by_date(todos, date)
+    return todos unless date
+    filtered_todos=[]
+    date=Time.zone.parse(date) if date.is_a? String
+    todos.parsed_response["todos"].each do |todo|
+      if todo
+        todo_due = todo["due"] ? todo["due"].utc.in_time_zone("Helsinki").to_date : nil
+        if todo_due == date || todo_due
+          filtered_todos<<todo
+        end
+      end
+    end
+    {:todos => filtered_todos}
+  end
+
 end

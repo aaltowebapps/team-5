@@ -26,4 +26,10 @@ class TracksApiTest < ActiveSupport::TestCase
     assert_not_nil new_todo
   end
 
+  test "filter by date string" do
+    todos=@api.todos
+    todos2=@api.filter_todos_by_date(todos, "2012-05-08T23:00:00Z")
+    assert todos2.size == 1
+  end
+
 end
