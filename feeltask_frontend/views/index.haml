@@ -1,7 +1,10 @@
 %div(data-role="page" id="home")
-  = haml :header
 
-  %h2 Your todos
+  %div(data-role="header")
+    %a(href="#add" data-icon="plus" data-iconpos="notext" data-transition="slide")Add
+    %h1 Today, May 7th
+    %a(href="#" data-icon="grid" data-iconpos="notext" data-transition="slide")Jump
+ 
   %ul(data-role="listview" data-theme="d" id="todosList")
     %li
       %a(href="#") Osta ruokaa 2
