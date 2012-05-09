@@ -27,7 +27,7 @@ var loadTodos = function () {
             var count = 0;
             console.log("Todos returned, rendering...");
             $.each(data.todos, function (index, todo) {
-              output += '<li data-theme="c"><a href="#show" onClick="sessionStorage.setItem(\'id\',' + todo.id + ');">' + todo.description + '</a></li>';
+              output += '<li data-theme="c" data-icon="false"><a href="#show" onClick="sessionStorage.setItem(\'id\',' + todo.id + ');">' + todo.description + '</a></li>';
               count = count + 1;
             });
             $('#todosList').append(output);
