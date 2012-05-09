@@ -15,6 +15,10 @@ input.invalid {
 
 /* Task list styling */
 
+#addEntry {
+	display: none;
+}
+
 div.week {
 	margin-left: 0;
 	margin-right: 0;

@@ -76,5 +76,20 @@ $(document).ready(function () {
     console.log("Showing todo id=" + todo_id + " Previous page was:" + ui.prevPage);
     $("#show_title").html("Showing todo " + todo_id);
   });
+  
+  $('#addLink').click(function() {
+  
+  	if( $('#addEntry').is(':hidden') ) {
+  		$('#addEntry').slideDown('slow');
+  		$('#addLink').attr("data-theme", "b").removeClass("ui-btn-up-a").addClass("ui-btn-up-b");
+  	}
+  	else {
+  		$('#addEntry').slideUp('slow');
+  		console.log("Toggle theme");
+  		$('#addLink').attr("data-theme", "a").removeClass("ui-btn-up-b").addClass("ui-btn-up-a");
+  		console.log("Toggle theme finished");
+  	}
+  	
+  });
 
 });
