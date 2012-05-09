@@ -12,3 +12,23 @@ input.invalid {
   background: url(error.png) no-repeat 4px 6px;
   padding-left: 30px;
 }
+
+/* Task list styling */
+
+div.week {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+a.day {
+	float: left;
+	display: block;
+	width: 14%;
+	padding: 10px 0;
+	text-align: center;
+	background: #c8c8c8;
+}
+
+a.day:after {
+	clear: both;
+}

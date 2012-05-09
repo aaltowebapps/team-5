@@ -1,13 +1,18 @@
 %div(data-role="page" id="home")
 
   %div(data-role="header")
-    %a(href="#add" data-icon="plus" data-iconpos="notext" data-transition="slide")Add
+    %a( id="add" href="#" data-icon="plus" data-iconpos="notext" data-transition="slide") Add
     %h1 Today, May 7th
-    %a(href="#" data-icon="grid" data-iconpos="notext" data-transition="slide")Jump
+    %a(href="#jump" data-icon="grid" data-iconpos="notext" data-transition="slide") Jump
  
-  %ul(data-role="listview" data-theme="d" id="todosList")
-    %li
-      %a(href="#") Osta ruokaa 2
+  %div(id="addEntry")
+    %form
+      %input(type="text" value="Entry name here...")
+      %input(type="submit" value="add")
+ 
+  %ul(data-role="listview" data-theme="c" id="todosList")
+    %li(data-theme="c")
+      %a(href="#") Osta ruokaa 2 
 
   %div(data-role="footer" data-position="fixed")
     %div(data-role="navbar")
@@ -27,12 +32,25 @@
     Implement.
 
   = haml :footer
-%div(data-role="page" id="add")
-  = haml :header
+  
+/Start jump page
 
-  %h2 Add todo
+%div(data-role="page" id="jump")
 
-  = haml :footer
+  %div(data-role="header")
+    %a(href="#add" data-icon="plus" data-iconpos="notext" data-transition="slide")Add
+    %h1 Today, May 7th
+    %a(href="#home" data-icon="grid" data-iconpos="notext" data-transition="slide" data-theme="b" data-direction="reverse")Jump
+    
+  %div(data-role="content")
+    %div(class="week")
+      %a(class="day" href="#") 0
+      %a(class="day" href="#") 1
+      %a(class="day" href="#") 2
+      %a(class="day" href="#") 3
+      %a(class="day" href="#") 4
+      %a(class="day" href="#") 5
+      %a(class="day" href="#") 6
   
 /Start motions page
   
