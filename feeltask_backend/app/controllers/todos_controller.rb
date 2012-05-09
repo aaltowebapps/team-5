@@ -6,7 +6,7 @@ class TodosController < ApplicationController
   # GET /todos.json
   def index
     tracks_api=TracksApi.new("http://kulti.fi/tracks", "feeltask", "feeltask")
-    date=params[:date].to_date rescue Date.today
+    date=params[:date].to_date rescue nil
     @todos = tracks_api.filter_todos_by_date(tracks_api.todos, date)
     respond_with @todos
   end
