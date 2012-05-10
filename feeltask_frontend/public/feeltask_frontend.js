@@ -27,7 +27,7 @@ var loadTodos = function () {
             var count = 0;
             console.log("Todos returned, rendering...");
             $.each(data.todos, function (index, todo) {
-              output += '<li data-theme="c" data-icon="false"><a href="#show" onClick="sessionStorage.setItem(\'id\',' + todo.id + ');">' + todo.description + '</a></li>';
+              output += '<li data-theme="c" data-icon="false"><a href="#show" onClick="sessionStorage.setItem(\'id\',' + todo.id + ');" data-transition="slide">' + todo.description + '</a></li>';
               count = count + 1;
             });
             $('#todosList').append(output);
@@ -93,10 +93,10 @@ $(document).ready(function () {
   $('#todosList li div div a').bind('leftSwipe', function(){
   
   	if( $(this).parent().children('div.buttonContainer').is(':hidden') ) {
-  		$(this).parent().children('div.buttonContainer').fadeIn();
+  		$(this).parent().children('div.buttonContainer').fadeIn('fast');
   	}
   	else {
-  		$(this).parent().children('div.buttonContainer').fadeOut();
+  		$(this).parent().children('div.buttonContainer').fadeOut('fast');
   	}
   	
   });

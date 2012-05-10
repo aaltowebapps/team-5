@@ -16,6 +16,15 @@
       %div(class="buttonContainer")
         %a(href="#" data-role="button" data-inline="true" data-mini="true")Edit
         %a(href="#" data-role="button" data-inline="true" data-theme="b" data-mini="true")Delete
+        
+  %script(type="text/javascript")
+    $('#addEntry').noisy({
+    'intensity' : 5, 
+    'size' : '200', 
+    'opacity' : 0.04, 
+    'fallback' : '', 
+    'monochrome' : true
+    }).css('background-color', '#1b1c1e');
           
 /Start show page
           
@@ -34,18 +43,67 @@
 
   %div(data-role="header")
     %a(href="#add" data-icon="plus" data-iconpos="notext" data-transition="slide")Add
-    %h1 Today, May 7th
+    %h1 May 2012
     %a(href="#home" data-icon="grid" data-iconpos="notext" data-transition="slide" data-theme="b" data-direction="reverse")Jump
     
-  %div(data-role="content")
+  %div(data-role="content" id="jump-container")
     %div(class="week")
-      %a(class="day" href="#") 0
+      %a(class="day name" href="#")Mon
+      %a(class="day name" href="#")Tue
+      %a(class="day name" href="#")Wed
+      %a(class="day name" href="#")Thu
+      %a(class="day name" href="#")Fri
+      %a(class="day name" href="#")Sat
+      %a(class="day name" href="#")Sun
+    %div(class="week")
+      %a(class="day" href="#")  
       %a(class="day" href="#") 1
       %a(class="day" href="#") 2
       %a(class="day" href="#") 3
       %a(class="day" href="#") 4
       %a(class="day" href="#") 5
       %a(class="day" href="#") 6
+    %div(class="week")
+      %a(class="day" href="#") 7
+      %a(class="day" href="#") 8
+      %a(class="day" href="#") 9
+      %a(class="day current" href="#") 10
+      %a(class="day" href="#") 11
+      %a(class="day" href="#") 12
+      %a(class="day" href="#") 13
+    %div(class="week")
+      %a(class="day" href="#") 14
+      %a(class="day" href="#") 15
+      %a(class="day" href="#") 16
+      %a(class="day" href="#") 17
+      %a(class="day" href="#") 18
+      %a(class="day" href="#") 19
+      %a(class="day" href="#") 20
+    %div(class="week")
+      %a(class="day" href="#") 21
+      %a(class="day" href="#") 22
+      %a(class="day" href="#") 23
+      %a(class="day" href="#") 24
+      %a(class="day" href="#") 25
+      %a(class="day" href="#") 26
+      %a(class="day" href="#") 27
+    %div(class="week")
+      %a(class="day" href="#") 28
+      %a(class="day" href="#") 29
+      %a(class="day" href="#") 30
+      %a(class="day" href="#") 31
+      %a(class="day" href="#")  
+      %a(class="day" href="#")  
+      %a(class="day" href="#")  
+  
+  %script(type="text/javascript")
+    $('#jump').noisy({
+    'intensity' : 5, 
+    'size' : '200', 
+    'opacity' : 0.04, 
+    'fallback' : '', 
+    'monochrome' : true
+    }).css('background-color', '#1b1c1e');
   
 /Start motions page
   
