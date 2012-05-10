@@ -1,6 +1,6 @@
 %div(data-role="page" id="home")
 
-  %div(data-role="header")
+  %div(data-role="header" data-position="fixed")
     %a( id="addLink" href="#" data-theme="a" data-icon="plus" data-iconpos="notext" data-transition="slide") Add
     %h1 Today, May 7th
     %a(href="#jump" data-icon="grid" data-iconpos="notext" data-transition="slide") Jump
@@ -12,7 +12,7 @@
  
   %ul(data-role="listview" data-theme="c" id="todosList")
     %li(data-theme="c" data-icon="false")
-      %a(href="#") Osta ruokaa 2 
+      %a(href="#" id="item") Osta ruokaa 2 
           
 /Start show page
           

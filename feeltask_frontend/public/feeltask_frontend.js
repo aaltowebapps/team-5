@@ -80,16 +80,20 @@ $(document).ready(function () {
   $('#addLink').click(function() {
   
   	if( $('#addEntry').is(':hidden') ) {
-  		$('#addEntry').slideDown('slow');
+  		$('#addEntry').slideDown();
   		$('#addLink').attr("data-theme", "b").removeClass("ui-btn-up-a").addClass("ui-btn-up-b");
   	}
   	else {
-  		$('#addEntry').slideUp('slow');
+  		$('#addEntry').slideUp();
   		console.log("Toggle theme");
   		$('#addLink').attr("data-theme", "a").removeClass("ui-btn-up-b").addClass("ui-btn-up-a");
   		console.log("Toggle theme finished");
   	}
   	
+  });
+  
+  $('#item').bind('swipe', function(){
+  	$('#addEntry').slideToggle();
   });
 
 });
