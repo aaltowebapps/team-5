@@ -16,6 +16,15 @@
     %link(rel="stylesheet" href="/feeltask_frontend.css")
     %link(rel="icon" type="image/png" href="/images/favicon-32x32.png")
     %title Feeltask
+    %script(type="text/javascript")
+      if( !window.location.hash && window.addEventListener ){
+      window.addEventListener( "load",function() {
+      setTimeout(function(){
+      window.scrollTo(0, 0);
+      }, 0);
+      });
+      }
+      
   %body
     = yield
     :javascript

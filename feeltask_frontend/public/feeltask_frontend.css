@@ -36,3 +36,19 @@ a.day {
 a.day:after {
 	clear: both;
 }
+
+div.buttonContainer {
+	position: absolute;
+	right: 0px;
+	top: 3px;
+	display: none;
+}
+
+.ui-btn-icon-right .ui-btn-inner {
+    padding: 4px 8px;
+}
+
+a.completed {
+	text-decoration: line-through !important;
+	color: #c8c8c8 !important;
+}

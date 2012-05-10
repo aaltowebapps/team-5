@@ -85,15 +85,31 @@ $(document).ready(function () {
   	}
   	else {
   		$('#addEntry').slideUp();
-  		console.log("Toggle theme");
   		$('#addLink').attr("data-theme", "a").removeClass("ui-btn-up-b").addClass("ui-btn-up-a");
-  		console.log("Toggle theme finished");
   	}
   	
   });
   
-  $('#item').bind('swipe', function(){
-  	$('#addEntry').slideToggle();
+  $('#todosList li div div a').bind('leftSwipe', function(){
+  
+  	if( $(this).parent().children('div.buttonContainer').is(':hidden') ) {
+  		$(this).parent().children('div.buttonContainer').fadeIn();
+  	}
+  	else {
+  		$(this).parent().children('div.buttonContainer').fadeOut();
+  	}
+  	
+  });
+  
+  $('#todosList li div div a').bind('rightSwipe', function(){
+  
+  	if( $(this).hasClass("completed") ) {
+  		$(this).removeClass("completed");
+  	}
+  	else {
+  		$(this).addClass("completed");
+  	}
+  	
   });
 
 });
