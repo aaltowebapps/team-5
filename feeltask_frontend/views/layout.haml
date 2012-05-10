@@ -17,6 +17,18 @@
     %title Feeltask
   %body
     = yield
+    :javascript
+      var pkBaseURL = (("https:" == document.location.protocol) ? "https://hyvahuolto.fi/piwik-stats/" : "http://hyvahuolto.fi/piwik-stats/");
+      document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+    :javascript
+      try {
+      var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 4);
+      piwikTracker.trackPageView();
+      piwikTracker.enableLinkTracking();
+      } catch( err ) {}
+    %noscript
+      %p
+        %img{:alt => "", :src => "http://hyvahuolto.fi/piwik-stats/piwik.php?idsite=4", :style => "border:0"}/
 
         
         
