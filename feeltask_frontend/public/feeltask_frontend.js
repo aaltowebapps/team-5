@@ -22,7 +22,7 @@ function ISODateString(d) {
 var loadTodos = function () {
   console.log("Loading todos from backend...");
   var output = '';
-  $.getJSON("http://feeltask.cloudfoundry.com/todos.json?date="+ISODateString(new Date()),
+  $.getJSON("http://feeltask.cloudfoundry.com/todos.json?date=" + ISODateString(new Date()),
           function (data) {
             var count = 0;
             console.log("Todos returned, rendering...");
@@ -58,7 +58,6 @@ $(document).ready(function () {
   loadTodos();
 
   $("#home").live('pageshow', function (event, ui) {
-    console.log("Home show. Previous page was:" + ui.prevPage);
     loadTodos();
   });
 
@@ -70,46 +69,42 @@ $(document).ready(function () {
     $.mobile.hidePageLoadingMsg();
   });
 
-
   $("#show").live('pageshow', function (event, ui) {
     var todo_id = sessionStorage.getItem("id");
     console.log("Showing todo id=" + todo_id + " Previous page was:" + ui.prevPage);
     $("#show_title").html("Showing todo " + todo_id);
   });
-  
-  $('#addLink').click(function() {
-  
-  	if( $('#addEntry').is(':hidden') ) {
-  		$('#addEntry').slideDown();
-  		$('#addLink').attr("data-theme", "b").removeClass("ui-btn-up-a").addClass("ui-btn-up-b");
-  	}
-  	else {
-  		$('#addEntry').slideUp();
-  		$('#addLink').attr("data-theme", "a").removeClass("ui-btn-up-b").addClass("ui-btn-up-a");
-  	}
-  	
+
+  $('#addLink').click(function () {
+    if ($('#addEntry').is(':hidden')) {
+      $('#addEntry').slideDown();
+      $('#addLink').attr("data-theme", "b").removeClass("ui-btn-up-a").addClass("ui-btn-up-b");
+    }
+    else {
+      $('#addEntry').slideUp();
+      $('#addLink').attr("data-theme", "a").removeClass("ui-btn-up-b").addClass("ui-btn-up-a");
+    }
+
   });
-  
-  $('#todosList li div div a').bind('leftSwipe', function(){
-  
-  	if( $(this).parent().children('div.buttonContainer').is(':hidden') ) {
-  		$(this).parent().children('div.buttonContainer').fadeIn('fast');
-  	}
-  	else {
-  		$(this).parent().children('div.buttonContainer').fadeOut('fast');
-  	}
-  	
+
+  $('.item_row').bind('leftSwipe', function () {
+    if ($(this).parent().children('div.buttonContainer').is(':hidden')) {
+      $(this).parent().children('div.buttonContainer').fadeIn('fast');
+    }
+    else {
+      $(this).parent().children('div.buttonContainer').fadeOut('fast');
+    }
+
   });
-  
-  $('#todosList li div div a').bind('rightSwipe', function(){
-  
-  	if( $(this).hasClass("completed") ) {
-  		$(this).removeClass("completed");
-  	}
-  	else {
-  		$(this).addClass("completed");
-  	}
-  	
+
+  $('.item_row').bind('rightSwipe', function () {
+    if ($(this).hasClass("completed")) {
+      $(this).removeClass("completed");
+    }
+    else {
+      $(this).addClass("completed");
+    }
+
   });
 
 });

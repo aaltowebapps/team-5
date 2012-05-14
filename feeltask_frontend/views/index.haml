@@ -1,7 +1,7 @@
-%div(data-role="page" id="home")
+#home(data-role="page")
 
   %div(data-role="header" data-position="fixed")
-    %a( id="addLink" href="#" data-theme="a" data-icon="plus" data-iconpos="notext" data-transition="slide") Add
+    %a#addLink(href="#" data-theme="a" data-icon="plus" data-iconpos="notext" data-transition="slide") Add
     %h1 Today, May 7th
     %a(href="#jump" data-icon="grid" data-iconpos="notext" data-transition="slide") Jump
  
@@ -10,14 +10,14 @@
       %input(type="text" value="Entry name here...")
       %input(type="submit" value="add")
  
-  %ul(data-role="listview" data-theme="c" id="todosList")
-    %li(data-theme="c" data-icon="false")
-      %a(href="#" id="item") Osta ruokaa 2
-      %div(class="buttonContainer")
+  %ul#todosList(data-role="listview" data-theme="c")
+    %li.item_row(data-theme="c" data-icon="false")
+      %a(href="#") Osta ruokaa 2
+      .buttonContainer
         %a(href="#" data-role="button" data-inline="true" data-mini="true")Edit
         %a(href="#" data-role="button" data-inline="true" data-theme="b" data-mini="true")Delete
         
-  %script(type="text/javascript")
+  :javascript
     $('#addEntry').noisy({
     'intensity' : 5, 
     'size' : '200', 
@@ -27,8 +27,8 @@
     }).css('background-color', '#1b1c1e');
           
 /Start show page
-          
-%div(data-role="page" id="show")
+
+#show(data-role="page")
   = haml :header
 
   %h2#show_title Show todo
@@ -39,8 +39,7 @@
   
 /Start jump page
 
-%div(data-role="page" id="jump")
-
+#jump(data-role="page")
   %div(data-role="header")
     %a(href="#add" data-icon="plus" data-iconpos="notext" data-transition="slide")Add
     %h1 May 2012
@@ -107,7 +106,7 @@
   
 /Start motions page
   
-%div(data-role="page" id="motions")
+#motions(data-role="page")
   = haml :header
 
   %h2 Motions
