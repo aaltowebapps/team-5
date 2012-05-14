@@ -5,7 +5,7 @@
     %h1 Today, May 7th
     %a(href="#jump" data-icon="grid" data-iconpos="notext" data-transition="slide") Jump
  
-  %div(id="addEntry")
+  #addEntry
     %form
       %input(type="text" value="Entry name here...")
       %input(type="submit" value="add")
@@ -46,55 +46,55 @@
     %h1 May 2012
     %a(href="#home" data-icon="grid" data-iconpos="notext" data-transition="slide" data-theme="b" data-direction="reverse")Jump
     
-  %div(data-role="content" id="jump-container")
-    %div(class="week")
-      %a(class="day name" href="#")Mon
-      %a(class="day name" href="#")Tue
-      %a(class="day name" href="#")Wed
-      %a(class="day name" href="#")Thu
-      %a(class="day name" href="#")Fri
-      %a(class="day name" href="#")Sat
-      %a(class="day name" href="#")Sun
-    %div(class="week")
-      %a(class="day" href="#")  
-      %a(class="day" href="#") 1
-      %a(class="day" href="#") 2
-      %a(class="day" href="#") 3
-      %a(class="day" href="#") 4
-      %a(class="day" href="#") 5
-      %a(class="day" href="#") 6
-    %div(class="week")
-      %a(class="day" href="#") 7
-      %a(class="day" href="#") 8
-      %a(class="day" href="#") 9
-      %a(class="day current" href="#") 10
-      %a(class="day" href="#") 11
-      %a(class="day" href="#") 12
-      %a(class="day" href="#") 13
-    %div(class="week")
-      %a(class="day" href="#") 14
-      %a(class="day" href="#") 15
-      %a(class="day" href="#") 16
-      %a(class="day" href="#") 17
-      %a(class="day" href="#") 18
-      %a(class="day" href="#") 19
-      %a(class="day" href="#") 20
-    %div(class="week")
-      %a(class="day" href="#") 21
-      %a(class="day" href="#") 22
-      %a(class="day" href="#") 23
-      %a(class="day" href="#") 24
-      %a(class="day" href="#") 25
-      %a(class="day" href="#") 26
-      %a(class="day" href="#") 27
-    %div(class="week")
-      %a(class="day" href="#") 28
-      %a(class="day" href="#") 29
-      %a(class="day" href="#") 30
-      %a(class="day" href="#") 31
-      %a(class="day" href="#")  
-      %a(class="day" href="#")  
-      %a(class="day" href="#")  
+  #jump-container(data-role="content")
+    .week
+      %a.day.name(href="#")Mon
+      %a.day.name(href="#")Tue
+      %a.day.name(href="#")Wed
+      %a.day.name(href="#")Thu
+      %a.day.name(href="#")Fri
+      %a.day.name(href="#")Sat
+      %a.day.name(href="#")Sun
+    .week
+      %a.day(href="#")  
+      %a.day(href="#") 1
+      %a.day(href="#") 2
+      %a.day(href="#") 3
+      %a.day(href="#") 4
+      %a.day(href="#") 5
+      %a.day(href="#") 6
+    .week
+      %a.day(href="#") 7
+      %a.day(href="#") 8
+      %a.day(href="#") 9
+      %a.day.current(href="#") 10
+      %a.day(href="#") 11
+      %a.day(href="#") 12
+      %a.day(href="#") 13
+    .week
+      %a.day(href="#") 14
+      %a.day(href="#") 15
+      %a.day(href="#") 16
+      %a.day(href="#") 17
+      %a.day(href="#") 18
+      %a.day(href="#") 19
+      %a.day(href="#") 20
+    .week
+      %a.day(href="#") 21
+      %a.day(href="#") 22
+      %a.day(href="#") 23
+      %a.day(href="#") 24
+      %a.day(href="#") 25
+      %a.day(href="#") 26
+      %a.day(href="#") 27
+    .week
+      %a.day(href="#") 28
+      %a.day(href="#") 29
+      %a.day(href="#") 30
+      %a.day(href="#") 31
+      %a.day(href="#")  
+      %a.day(href="#")  
+      %a.day(href="#")  
   
   %script(type="text/javascript")
     $('#jump').noisy({
