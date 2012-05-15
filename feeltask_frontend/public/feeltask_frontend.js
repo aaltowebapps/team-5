@@ -27,7 +27,7 @@ var loadTodos = function () {
             var count = 0;
             console.log("Todos returned, rendering...");
             $.each(data.todos, function (index, todo) {
-              output += '<li data-theme="c" data-icon="false"><a href="#show" onClick="sessionStorage.setItem(\'id\',' + todo.id + ');" data-transition="slide">' + todo.description + '</a></li>';
+              output += '<li class="item_row" data-theme="c" data-icon="false"><a href="#show" onClick="sessionStorage.setItem(\'id\',' + todo.id + ');" data-transition="slide">' + todo.description + '</a></li>';
               count = count + 1;
             });
             $('#todosList').append(output);
@@ -56,6 +56,15 @@ $(document).ready(function () {
   window.addEventListener("devicemotion", onDeviceMotion, false);
 
   loadTodos();
+
+  $('#addEntry').noisy({
+    'intensity':5,
+    'size':'200',
+    'opacity':0.04,
+    'fallback':'',
+    'monochrome':true
+  }).css('background-color', '#1b1c1e');
+
 
   $("#home").live('pageshow', function (event, ui) {
     loadTodos();
