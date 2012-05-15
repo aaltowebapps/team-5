@@ -42,6 +42,8 @@ var loadTodos = function () {
 $(document).bind('pageinit', function () {
   console.log("Pageinit for document started.");
 
+  $('#home_title').html("Today, "+Date.today().toString("dddd d.M.yyyy"));
+
   $('#addEntry').noisy({
     'intensity':5,
     'size':'200',
