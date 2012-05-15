@@ -105,13 +105,13 @@
     Add todo
   %label(for="sliderX")
     X Acceleration (Roll)
-  %input(type="range" name="sliderX" id="sliderX" value="0" min="-10" max="10" data-theme="a")
+  %input#sliderX(type="range" name="sliderX" value="0" min="-10" max="10" data-theme="a")
   %label(for="sliderY")
     Y Acceleration (Pitch)
-  %input(type="range" name="sliderY" id="sliderY" value="0" min="-10" max="10" data-theme="b")
+  %input#sliderY(type="range" name="sliderY" value="0" min="-10" max="10" data-theme="b")
   %label(for="sliderZ")
     Z Acceleration (<strike>Yaw</strike> Face up/down)
-  %input(type="range" name="sliderZ" id="sliderZ" value="0" min="-10" max="10" data-theme="c")
+  %input#sliderZ(type="range" name="sliderZ" value="0" min="-10" max="10" data-theme="c")
 
   %div(style="text-align:center;margin-top:10px;")
     %canvas(id="c" width="100" height="100")
