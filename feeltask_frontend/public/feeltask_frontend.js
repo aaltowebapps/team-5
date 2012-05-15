@@ -64,6 +64,11 @@ $(document).bind('pageinit', function () {
     loadTodos();
   });
 
+  $("#jump").live('pageshow', function (event, ui) {
+    // TODO: Implement month loading here.
+    $('#jump_month_title').html(Date.today().toString("MMM yyyy"));
+  });
+
   $("#show").live('pageshow', function (event, ui) {
     var todo_id = sessionStorage.getItem("id");
     console.log("Showing todo id=" + todo_id + " Previous page was:" + ui.prevPage);

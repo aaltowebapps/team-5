@@ -28,18 +28,18 @@
 #jump(data-role="page")
   %div(data-role="header")
     %a(href="#add" data-icon="plus" data-iconpos="notext" data-transition="slide")Add
-    %h1 May 2012
+    %h1#jump_month_title dynamically month
     %a(href="#home" data-icon="grid" data-iconpos="notext" data-transition="slide" data-theme="b" data-direction="reverse")Jump
     
   #jump-container(data-role="content")
     .week
-      %a.day.name(href="#")Mon
-      %a.day.name(href="#")Tue
-      %a.day.name(href="#")Wed
-      %a.day.name(href="#")Thu
-      %a.day.name(href="#")Fri
-      %a.day.name(href="#")Sat
-      %a.day.name(href="#")Sun
+      %a.day.name Mon
+      %a.day.name Tue
+      %a.day.name Wed
+      %a.day.name Thu
+      %a.day.name Fri
+      %a.day.name Sat
+      %a.day.name Sun
     .week
       %a.day(href="#")  
       %a.day(href="#") 1
