@@ -20,42 +20,27 @@ function ISODateString(d) {
 }
 
 var loadTodos = function () {
-  console.log("Loading todos from backend...");
   var output = '';
   $.getJSON("http://feeltask.cloudfoundry.com/todos.json?date=" + ISODateString(new Date()),
           function (data) {
             var count = 0;
-            console.log("Todos returned, rendering...");
             $.each(data.todos, function (index, todo) {
-              output += '<li class="item_row" data-theme="c" data-icon="false"><a href="#show" onClick="sessionStorage.setItem(\'id\',' + todo.id + ');" data-transition="slide">' + todo.description + '</a></li>';
+              output += '<li class="item_row" data-theme="c" data-icon="false"><a href="#show" class="item_row_text" onClick="sessionStorage.setItem(\'id\',' + todo.id + ');" data-transition="slide">' + todo.description + '</a>';
+              output += '<div class="buttonContainer">';
+              output += '<a href="#edit" class="item_btn" data-role="button" data-inline="true" data-mini="true" onClick="sessionStorage.setItem(\'id\',' + todo.id + ');">Edit</a>';
+              output += '<a href="#delete" class="item_btn" data-role="button" data-theme="b" data-inline="true" data-mini="true" onClick="sessionStorage.setItem(\'id\',' + todo.id + ');">Delete</a>';
+              output += '</div></li>';
               count = count + 1;
             });
-            $('#todosList').append(output);
+            $('#todosList').html(output);
             $('#todosList').listview('refresh');
-            console.log("Todos returned, rendered " + count + " todos.");
-
+            $('#todosList .item_btn').button();
           });
 };
 
-function onDeviceMotion(event) {
-  var ctx = document.getElementById("c").getContext("2d");
-  var accel = event.accelerationIncludingGravity;
-  $("#sliderX").val(Math.round(accel.x)).slider("refresh");
-  $("#sliderY").val(Math.round(accel.y)).slider("refresh");
-  $("#sliderZ").val(Math.round(accel.z)).slider("refresh");
-  var angle = Math.atan2(accel.y, accel.x)
-  ctx.clearRect(0, 0, 100, 100);
-  ctx.beginPath();
-  ctx.arc(50, 50, 5, 0, 2 * Math.PI, false);
-  ctx.moveTo(50, 50);
-  ctx.lineTo(50 - 50 * Math.cos(angle), 50 + 50 * Math.sin(angle));
-  ctx.stroke();
-}
 
-$(document).ready(function () {
-  window.addEventListener("devicemotion", onDeviceMotion, false);
-
-  loadTodos();
+$(document).bind('pageinit', function () {
+  console.log("Pageinit for document started.");
 
   $('#addEntry').noisy({
     'intensity':5,
@@ -65,17 +50,16 @@ $(document).ready(function () {
     'monochrome':true
   }).css('background-color', '#1b1c1e');
 
-
-  $("#home").live('pageshow', function (event, ui) {
-    loadTodos();
-  });
-
   $(this).ajaxStart(function () {
     $.mobile.showPageLoadingMsg();
   });
 
   $(this).ajaxStop(function () {
     $.mobile.hidePageLoadingMsg();
+  });
+
+  $("#home").live('pageshow', function (event, ui) {
+    loadTodos();
   });
 
   $("#show").live('pageshow', function (event, ui) {
@@ -93,27 +77,31 @@ $(document).ready(function () {
       $('#addEntry').slideUp();
       $('#addLink').attr("data-theme", "a").removeClass("ui-btn-up-b").addClass("ui-btn-up-a");
     }
-
   });
 
-  $('.item_row').bind('leftSwipe', function () {
-    if ($(this).parent().children('div.buttonContainer').is(':hidden')) {
-      $(this).parent().children('div.buttonContainer').fadeIn('fast');
+  $('.item_row').live('swipeleft', function () {
+    console.log("swiped left " + $(this));
+    var buttons = $(this).find('.buttonContainer');
+    if (buttons.is(':visible')) {
+      console.log("Hiding buttons");
+      buttons.hide('fast');
     }
     else {
-      $(this).parent().children('div.buttonContainer').fadeOut('fast');
+      console.log("Showing buttons");
+      buttons.show('fast');
     }
 
   });
 
-  $('.item_row').bind('rightSwipe', function () {
-    if ($(this).hasClass("completed")) {
-      $(this).removeClass("completed");
+  $('.item_row').live('swiperight', function () {
+    console.log("swiped right " + $(this));
+    var lbl = $(this).find('.item_row_text');
+    if (lbl.hasClass("completed")) {
+      lbl.removeClass("completed");
     }
     else {
-      $(this).addClass("completed");
+      lbl.addClass("completed");
     }
 
   });
-
 });

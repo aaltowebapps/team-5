@@ -11,12 +11,7 @@
       %input(type="submit" value="add")
  
   %ul#todosList(data-role="listview" data-theme="c")
-    %li.item_row(data-theme="c" data-icon="false")
-      %a(href="#") Osta ruokaa 2
-      .buttonContainer
-        %a(href="#" data-role="button" data-inline="true" data-mini="true")Edit
-        %a(href="#" data-role="button" data-inline="true" data-theme="b" data-mini="true")Delete
-        
+
 /Start show page
 
 #show(data-role="page")
@@ -94,26 +89,3 @@
     'fallback' : '', 
     'monochrome' : true
     }).css('background-color', '#1b1c1e');
-  
-/Start motions page
-  
-#motions(data-role="page")
-  = haml :header
-
-  %h2 Motions
-  %a(href="#add")
-    Add todo
-  %label(for="sliderX")
-    X Acceleration (Roll)
-  %input#sliderX(type="range" name="sliderX" value="0" min="-10" max="10" data-theme="a")
-  %label(for="sliderY")
-    Y Acceleration (Pitch)
-  %input#sliderY(type="range" name="sliderY" value="0" min="-10" max="10" data-theme="b")
-  %label(for="sliderZ")
-    Z Acceleration (<strike>Yaw</strike> Face up/down)
-  %input#sliderZ(type="range" name="sliderZ" value="0" min="-10" max="10" data-theme="c")
-
-  %div(style="text-align:center;margin-top:10px;")
-    %canvas(id="c" width="100" height="100")
-
-  = haml :footer
