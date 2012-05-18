@@ -1,5 +1,5 @@
 class TodosController < ApplicationController
-
+  protect_from_forgery :except => [:create, :update]
   respond_to :json
 
 
@@ -28,8 +28,10 @@ class TodosController < ApplicationController
     if params[:todo]
       @todo = Todo.new(params[:todo])
     else
-      @todo = Todo.new(:description => params[:description], :state => "active", :context_id => 4)
+      @todo = Todo.new(:description => params[:description])
     end
+    @todo.state = "active"
+    @todo.context_id = 4
     api=TracksApi.new("http://kulti.fi/tracks", "feeltask", "feeltask")
     respond_to do |format|
       if @todo.save

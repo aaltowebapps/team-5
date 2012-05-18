@@ -64,7 +64,7 @@ class TracksApi
       if date
         if todo
           todo_due = todo["due"] ? todo["due"].utc.in_time_zone("Helsinki").to_date : nil
-          if todo_due == date || todo_due
+          if todo_due.blank? || todo_due == date || todo_due < date
             filtered_todos<<todo
           end
         end
