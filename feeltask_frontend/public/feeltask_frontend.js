@@ -25,7 +25,7 @@ var loadTodos = function () {
           function (data) {
             var count = 0;
             $.each(data.todos, function (index, todo) {
-              output += '<li class="item_row" data-theme="c" data-icon="false"><a href="#show" class="item_row_text" onClick="sessionStorage.setItem(\'id\',' + todo.id + ');" data-transition="slide">' + todo.description + '</a>';
+              output += '<li class="item_row" data-theme="c" data-icon="false">' + todo.description;
               output += '<div class="buttonContainer">';
               output += '<a href="#edit" class="item_btn" data-role="button" data-inline="true" data-mini="true" onClick="sessionStorage.setItem(\'id\',' + todo.id + ');">Edit</a>';
               output += '<a href="#delete" class="item_btn" data-role="button" data-theme="b" data-inline="true" data-mini="true" onClick="sessionStorage.setItem(\'id\',' + todo.id + ');">Delete</a>';
