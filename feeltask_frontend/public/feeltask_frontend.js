@@ -19,6 +19,17 @@ function ISODateString(d) {
           + pad(d.getUTCSeconds()) + 'Z'
 }
 
+function toggleAddEntry() {
+  if ($('#addEntry').is(':hidden')) {
+    $('#addEntry').slideDown();
+    $('#addLink').attr("data-theme", "b").removeClass("ui-btn-up-a").addClass("ui-btn-up-b");
+  }
+  else {
+    $('#addEntry').slideUp();
+    $('#addLink').attr("data-theme", "a").removeClass("ui-btn-up-b").addClass("ui-btn-up-a");
+  }
+}
+
 var loadTodos = function () {
   var output = '';
   $.getJSON("http://feeltask.cloudfoundry.com/todos.json?date=" + ISODateString(new Date()),
@@ -42,7 +53,7 @@ var loadTodos = function () {
 $(document).bind('pageinit', function () {
   console.log("Pageinit for document started.");
 
-  $('#home_title').html("Today, "+Date.today().toString("dddd d.M.yyyy"));
+  $('#home_title').html("Today, " + Date.today().toString("dddd d.M.yyyy"));
 
   $('#addEntry').noisy({
     'intensity':5,
@@ -76,14 +87,7 @@ $(document).bind('pageinit', function () {
   });
 
   $('#addLink').click(function () {
-    if ($('#addEntry').is(':hidden')) {
-      $('#addEntry').slideDown();
-      $('#addLink').attr("data-theme", "b").removeClass("ui-btn-up-a").addClass("ui-btn-up-b");
-    }
-    else {
-      $('#addEntry').slideUp();
-      $('#addLink').attr("data-theme", "a").removeClass("ui-btn-up-b").addClass("ui-btn-up-a");
-    }
+    toggleAddEntry();
   });
 
   $('.item_row').live('swipeleft', function () {
@@ -97,7 +101,6 @@ $(document).bind('pageinit', function () {
       console.log("Showing buttons");
       buttons.show('fast');
     }
-
   });
 
   $('.item_row').live('swiperight', function () {
@@ -109,6 +112,11 @@ $(document).bind('pageinit', function () {
     else {
       lbl.addClass("completed");
     }
-
+  });
+  $("#add_entry_form").submit(function (event) {
+    console.log("Added new task...");
+    event.preventDefault();
+    toggleAddEntry();
+    return false;
   });
 });
