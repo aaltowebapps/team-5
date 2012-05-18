@@ -11,6 +11,11 @@
     %script(type="text/javascript" src="/jquery.noisy.min.js")
     / http://www.datejs.com/2007/11/27/getting-started-with-datejs/
     %script(type="text/javascript" src="/date.js")
+    %script(type="text/javascript" src="/handlebars-1.0.0.beta.6.js")
+    %script(type="text/javascript" src="/underscore.js")
+    %script(type="text/javascript" src="/json2.js")
+    %script(type="text/javascript" src="/backbone.js")
+    %script(type="text/javascript" src="/ft_tools.js")
     %script(type="text/javascript" src="/feeltask_frontend.js")
     %link(rel="stylesheet" href="/jquery.mobile-1.1.0.css")
     %link(rel="stylesheet" href="/jquery.mobile.structure-1.1.0.css")
@@ -28,6 +33,7 @@
       }
       
   %body
+    = haml :templates
     = yield
     :javascript
       var pkBaseURL = (("https:" == document.location.protocol) ? "https://hyvahuolto.fi/piwik-stats/" : "http://hyvahuolto.fi/piwik-stats/");

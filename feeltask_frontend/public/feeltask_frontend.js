@@ -1,23 +1,78 @@
-// In case we forget to take out console statements. IE becomes very unhappy when we forget. Let's not make IE unhappy
-if (typeof(console) === 'undefined') {
-  var console = {}
-  console.log = console.error = console.info = console.debug = console.warn = console.trace = console.dir = console.dirxml = console.group = console.groupEnd = console.time = console.timeEnd = console.assert = console.profile = function () {
-  };
-}
+var selectedDay = new Date();
+var Templates = {};
+var todos;
 
-/* use a function for the exact format desired... */
-function ISODateString(d) {
-  function pad(n) {
-    return n < 10 ? '0' + n : n
+var Todo = Backbone.Model.extend({
+  defaults:{
+    created_at:Date.now
+  },
+  initialize:function () {
+    console.log("New todo initialized.");
   }
+});
 
-  return d.getUTCFullYear() + '-'
-          + pad(d.getUTCMonth() + 1) + '-'
-          + pad(d.getUTCDate()) + 'T'
-          + pad(d.getUTCHours()) + ':'
-          + pad(d.getUTCMinutes()) + ':'
-          + pad(d.getUTCSeconds()) + 'Z'
-}
+var Todos = Backbone.Collection.extend({
+  model:Todo,
+  url:'http://feeltask.cloudfoundry.com/todos.json',
+  initialize:function () {
+    console.log("New todo list initialized.");
+  }
+});
+
+$(function () {
+  //Load the templates and store them in a global variable
+  $('script[type="text/x-handlebars-template"]').each(function () {
+    Templates[this.id] = Handlebars.compile($(this).html());
+  });
+
+  //View for rendering one todo
+  var ItemView = Backbone.View.extend({
+    tagName:"li",
+    events:{
+      "blur [contenteditable]":"saveValues"
+    },
+    initialize:function () {
+      this.model.bind('change', this.render, this);
+      this.template = Templates.todo;
+    },
+    render:function () {
+      $(this.el).addClass("item_row").html(this.template(this.model.toJSON()));
+      return this;
+    },
+    saveValues:function () {
+      this.model.save({
+        title:this.$("[data-name='title']").html(),
+        content:this.$("[data-name='content']").html()
+      }, {silent:true});
+    }
+  });
+
+  //View for rendering the list of todos
+  var ListView = Backbone.View.extend({
+    el:$("#todosList"),
+    events:{
+    },
+    initialize:function () {
+      this.collection.bind('reset', this.render, this);
+      this.collection.bind('all', this.render, this);
+    },
+    render:function () {
+      var el = this.$el;
+      el.empty();
+      this.collection.each(function (item) {
+        var itemView = new ItemView({model:item});
+        el.append(itemView.render().el);
+      });
+      this.$el.listview('refresh');
+      this.$el.find('.item_btn').button();
+
+      return this;
+    }
+  });
+
+  //Instantiate the views
+  var listView = new ListView({collection:todos});
+})
 
 function toggleAddEntry() {
   if ($('#addEntry').is(':hidden')) {
@@ -30,28 +85,9 @@ function toggleAddEntry() {
   }
 }
 
-var loadTodos = function () {
-  var output = '';
-  $.getJSON("http://feeltask.cloudfoundry.com/todos.json?date=" + ISODateString(new Date()),
-          function (data) {
-            var count = 0;
-            $.each(data.todos, function (index, todo) {
-              output += '<li class="item_row" data-theme="c" data-icon="false">' + todo.description;
-              output += '<div class="buttonContainer">';
-              output += '<a href="#edit" class="item_btn" data-role="button" data-inline="true" data-mini="true" onClick="sessionStorage.setItem(\'id\',' + todo.id + ');">Edit</a>';
-              output += '<a href="#delete" class="item_btn" data-role="button" data-theme="b" data-inline="true" data-mini="true" onClick="sessionStorage.setItem(\'id\',' + todo.id + ');">Delete</a>';
-              output += '</div></li>';
-              count = count + 1;
-            });
-            $('#todosList').html(output);
-            $('#todosList').listview('refresh');
-            $('#todosList .item_btn').button();
-          });
-};
-
-
 $(document).bind('pageinit', function () {
   console.log("Pageinit for document started.");
+  todos = new Todos();
 
   $('#home_title').html("Today, " + Date.today().toString("dddd d.M.yyyy"));
 
@@ -72,7 +108,9 @@ $(document).bind('pageinit', function () {
   });
 
   $("#home").live('pageshow', function (event, ui) {
-    loadTodos();
+    console.log("Fetching tasks for date " + ISODateString(selectedDay));
+    todos.fetch({data:{date:ISODateString(selectedDay)}});
+    //loadTodos();
   });
 
   $("#jump").live('pageshow', function (event, ui) {

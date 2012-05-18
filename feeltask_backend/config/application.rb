@@ -67,5 +67,6 @@ module FeelTask
                  :methods => [:get, :post, :put, :delete]
       end
     end
+    config.active_record.include_root_in_json = false
   end
 end

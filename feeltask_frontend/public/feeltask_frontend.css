@@ -16,60 +16,64 @@ input.invalid {
 /* Task list styling */
 
 #addEntry {
-	display: none;
+  display: none;
 }
 
 div.buttonContainer {
-	position: absolute;
-	right: 0px;
-	top: 3px;
-	display: none;
+  position: absolute;
+  right: 0px;
+  top: 3px;
+  display: none;
+}
+
+.item_row {
+  height: 26px;
 }
 
 .ui-btn-icon-right .ui-btn-inner {
-    padding: 4px 8px;
+  padding: 4px 8px;
 }
 
-a.completed {
-	text-decoration: line-through !important;
-	color: #c8c8c8 !important;
+div.completed {
+  text-decoration: line-through !important;
+  color: #c8c8c8 !important;
 }
 
 /* Jump page */
 
 #jump {
-	-webkit-box-shadow: inset 0 0 10px #000000;
+  -webkit-box-shadow: inset 0 0 10px #000000;
 }
 
 div.week {
-	
+
 }
 
 a.day {
-	float: left;
-	display: block;
-	width: 14%;
-	padding: 22px 0;
-	text-align: center;
-	color: #fff !important;
-	text-shadow: 0  1px 0 #333 !important;
-	text-decoration: none !important;
+  float: left;
+  display: block;
+  width: 14%;
+  padding: 22px 0;
+  text-align: center;
+  color: #fff !important;
+  text-shadow: 0 1px 0 #333 !important;
+  text-decoration: none !important;
 }
 
 a.day:first-child, a.day:last-child {
-	width: 15%;
+  width: 15%;
 }
 
 a.current {
-	color: #61a3d6 !important;
+  color: #61a3d6 !important;
 }
 
 a.day:after {
-	clear: both;
+  clear: both;
 }
 
 a.name {
-	color: #92969a !important;
+  color: #92969a !important;
 }
 
 /* END jump page */
