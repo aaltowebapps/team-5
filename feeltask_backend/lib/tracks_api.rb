@@ -1,5 +1,6 @@
 require 'httparty'
 require 'json'
+require 'builder'
 
 # This class is used to use REST API interface provided by Tracks application.
 class TracksApi
@@ -16,6 +17,14 @@ class TracksApi
     @auth = {:username => username, :password => password}
   end
 
+
+  # Create todo in Tracks
+  def create_todo(todo)
+    post_vals={:todo => {:project_id => nil, :context_id => todo.context_id, :description => todo.description}}
+    options={:basic_auth => @auth, :body => post_vals}
+    Rails.logger.debug "Options for POST: #{options}"
+    response=self.class.post("#{@base_uri}/todos.xml", options)
+  end
 
   # Retrieve todos from Tracks.  
   # @param options [Hash]

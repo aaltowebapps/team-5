@@ -32,4 +32,11 @@ class TracksApiTest < ActiveSupport::TestCase
     assert todos2.size == 1
   end
 
+  test "create todo" do
+    todo=Todo.new(:description => "testing", :state => "active", :context_id => 4)
+    response=@api.create_todo(todo)
+    assert_not_nil response
+    assert_equal 201, response.code
+  end
+
 end

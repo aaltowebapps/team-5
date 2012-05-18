@@ -25,9 +25,15 @@ class TodosController < ApplicationController
 
   # POST /todos.json
   def create
-    @todo = Todo.new(params[:todo])
+    if params[:todo]
+      @todo = Todo.new(params[:todo])
+    else
+      @todo = Todo.new(:description => params[:description], :state => "active", :context_id => 4)
+    end
+    api=TracksApi.new("http://kulti.fi/tracks", "feeltask", "feeltask")
     respond_to do |format|
       if @todo.save
+        api.create_todo(@todo)
         format.json { render :json => @todo, :status => :created, :location => @todo }
       else
         format.json { render :json => @todo.errors, :status => :unprocessable_entity }
