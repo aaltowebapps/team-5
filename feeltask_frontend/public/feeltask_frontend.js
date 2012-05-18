@@ -1,10 +1,15 @@
 var selectedDay = new Date();
 var Templates = {};
 var todos;
+var listView;
 
 var Todo = Backbone.Model.extend({
   defaults:{
     created_at:Date.now
+  },
+  url:function () {
+    var end = this.id ? '/todos/' + this.id + '.json' : '/todos.json';
+    return 'http://feeltask.cloudfoundry.com' + end;
   },
   initialize:function () {
     console.log("New todo initialized.");
@@ -13,7 +18,7 @@ var Todo = Backbone.Model.extend({
 
 var Todos = Backbone.Collection.extend({
   model:Todo,
-  url:'http://feeltask.cloudfoundry.com/todos.json',
+  url:"http://feeltask.cloudfoundry.com/todos.json",
   initialize:function () {
     console.log("New todo list initialized.");
   }
@@ -70,8 +75,8 @@ $(function () {
     }
   });
 
-  //Instantiate the views
-  var listView = new ListView({collection:todos});
+  // Instantiate the views
+  listView = new ListView({collection:todos});
 })
 
 function toggleAddEntry() {
@@ -89,7 +94,7 @@ $(document).bind('pageinit', function () {
   console.log("Pageinit for document started.");
   todos = new Todos();
 
-  $('#home_title').html("Today, " + Date.today().toString("dddd d.M.yyyy"));
+  $('#home_title').html(selectedDay.toString("dddd d.M.yyyy"));
 
   $('#addEntry').noisy({
     'intensity':5,
@@ -110,7 +115,6 @@ $(document).bind('pageinit', function () {
   $("#home").live('pageshow', function (event, ui) {
     console.log("Fetching tasks for date " + ISODateString(selectedDay));
     todos.fetch({data:{date:ISODateString(selectedDay)}});
-    //loadTodos();
   });
 
   $("#jump").live('pageshow', function (event, ui) {
@@ -128,6 +132,7 @@ $(document).bind('pageinit', function () {
     toggleAddEntry();
   });
 
+  // Adding behaviour for todos when swiping left.
   $('.item_row').live('swipeleft', function () {
     console.log("swiped left " + $(this));
     var buttons = $(this).find('.buttonContainer');
@@ -141,6 +146,7 @@ $(document).bind('pageinit', function () {
     }
   });
 
+  // Adding behaviour for todos when swiping right.
   $('.item_row').live('swiperight', function () {
     console.log("swiped right " + $(this));
     var lbl = $(this).find('.item_row_text');
@@ -151,8 +157,12 @@ $(document).bind('pageinit', function () {
       lbl.addClass("completed");
     }
   });
+  // Replacing submit for doing new todo.
   $("#add_entry_form").submit(function (event) {
     console.log("Added new task...");
+    var new_todo = new Todo({description:$("#new_desc").val()})
+    new_todo.save();
+    todos.add(new_todo);
     event.preventDefault();
     toggleAddEntry();
     return false;
