@@ -13,7 +13,7 @@ class TodosController < ApplicationController
 
   # GET /todos/1.json
   def show
-    @todo = TracksApi.new("http://kulti.fi/tracks", "feeltask", "feeltask").todo(params[:id])
+    @todo = TracksApi.new("http://kulti.fi/tracks", "feeltask", "feeltask").get_todo(params[:id])
     respond_with @todo
   end
 
@@ -45,10 +45,11 @@ class TodosController < ApplicationController
 
   # PUT /todos/1.json
   def update
-    @todo = TracksApi.new("http://kulti.fi/tracks", "feeltask", "feeltask").todo(params[:id])
-
+    api=TracksApi.new("http://kulti.fi/tracks", "feeltask", "feeltask")
+    @todo = api.get_todo(params[:id])
     respond_to do |format|
       if @todo.update_attributes(params[:todo])
+        api.update_todo(@todo)
         format.json { head :no_content }
       else
         format.json { render :json => @todo.errors, :status => :unprocessable_entity }

@@ -62,6 +62,12 @@ GEM
     factory_girl_rails (3.0.0)
       factory_girl (~> 3.0.0)
       railties (>= 3.0.0)
+    haml (3.1.6)
+    haml-rails (0.3.4)
+      actionpack (~> 3.0)
+      activesupport (~> 3.0)
+      haml (~> 3.0)
+      railties (~> 3.0)
     highline (1.6.11)
     hike (1.2.1)
     httparty (0.8.1)
@@ -175,6 +181,8 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   factory_girl_rails
+  haml
+  haml-rails
   httparty
   jquery-mobile-rails
   jquery-rails

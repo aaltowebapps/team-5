@@ -49,6 +49,8 @@ gem 'capistrano'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 gem 'factory_girl_rails', :group => :test
+gem 'haml'
+gem 'haml-rails'
 
 group :test do
   # Pretty printed test output
