@@ -30,6 +30,10 @@ div.buttonContainer {
   height: 26px;
 }
 
+.item_row_id {
+  display: none;
+}
+
 .ui-btn-icon-right .ui-btn-inner {
   padding: 4px 8px;
 }

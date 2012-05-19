@@ -1,4 +1,5 @@
 %script#todo(type="text/x-handlebars-template")
+  .item_row_id {{id}}
   .item_row_text {{description}}
   .buttonContainer
     %a.item_btn{:href=>"#edit","data-role"=>"button", "data-inline"=>"true", "data-mini"=>"true","onClick"=>"sessionStorage.setItem(\'id\','{{id}}');"} Edit

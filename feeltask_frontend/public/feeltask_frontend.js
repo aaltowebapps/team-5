@@ -9,7 +9,7 @@ var Todo = Backbone.Model.extend({
   },
   url:function () {
     var end = this.id ? '/todos/' + this.id + '.json' : '/todos.json';
-    return 'http://feeltask.cloudfoundry.com' + end;
+    return 'http://0.0.0.0:3000' + end;
   },
   initialize:function () {
     console.log("New todo initialized.");
@@ -18,12 +18,34 @@ var Todo = Backbone.Model.extend({
 
 var Todos = Backbone.Collection.extend({
   model:Todo,
-  url:"http://feeltask.cloudfoundry.com/todos.json",
+  url:"http://0.0.0.0:3000/todos.json",
   initialize:function () {
     console.log("New todo list initialized.");
   }
 });
 
+
+function toggleTodoCompleted(item) {
+  var lbl = item.find('.item_row_text');
+  var item_id = item.find(".item_row_id").html();
+  var item = todos.get(item_id);
+
+  if (lbl.hasClass("completed")) {
+    // Mark as active
+    lbl.removeClass("completed");
+    item.state = "active";
+    item.save();
+    console.log("item id " + item_id + " marked as open.");
+
+  }
+  else {
+    // Mark as completed
+    lbl.addClass("completed");
+    item.state = "completed";
+    item.save();
+    console.log("item id " + item_id + " marked as completed.");
+  }
+}
 $(function () {
   //Load the templates and store them in a global variable
   $('script[type="text/x-handlebars-template"]').each(function () {
@@ -34,7 +56,6 @@ $(function () {
   var ItemView = Backbone.View.extend({
     tagName:"li",
     events:{
-      "blur [contenteditable]":"saveValues"
     },
     initialize:function () {
       this.model.bind('change', this.render, this);
@@ -42,6 +63,9 @@ $(function () {
     },
     render:function () {
       $(this.el).addClass("item_row").html(this.template(this.model.toJSON()));
+      if (this.model.state == "completed") {
+        $(this.el).find(".item_row_text").addClass("completed")
+      }
       return this;
     },
     saveValues:function () {
@@ -149,13 +173,7 @@ $(document).bind('pageinit', function () {
   // Adding behaviour for todos when swiping right.
   $('.item_row').live('swiperight', function () {
     console.log("swiped right " + $(this));
-    var lbl = $(this).find('.item_row_text');
-    if (lbl.hasClass("completed")) {
-      lbl.removeClass("completed");
-    }
-    else {
-      lbl.addClass("completed");
-    }
+    toggleTodoCompleted($(this));
   });
   // Replacing submit for doing new todo.
   $("#add_entry_form").submit(function (event) {
