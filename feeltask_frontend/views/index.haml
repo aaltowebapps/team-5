@@ -54,11 +54,15 @@
       %a.day.name Sun
     #weeks
     
-#map(data-role="page" data-title="show directions")
+#directions(data-role="page" data-title="show directions")
   %div(data-role="header")
+    %a(href="#home" data-icon="arrow-l" data-iconpos="notext" data-transition="slide" data-direction="reverse")Back
     %h2 Map
     
   %div#mapview(data-role="content")
     %div#method
     %div#map
     %div#route
+    
+  %div(data-role="footer" data-position="fixed")
+    %a#showDirections(href="#" data-icon="arrow-l" data-transition="slide")Show directions

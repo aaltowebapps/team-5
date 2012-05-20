@@ -8,7 +8,7 @@ function initiate_geolocation(skipHTML5) {
   if (!skipHTML5 && navigator.geolocation) {
     // HTML5 GeoLocation
     function getLocation(position) {
-      document.getElementById("method").innerHTML = "Location obtained using HTML5";
+      //document.getElementById("method").innerHTML = "Location obtained using HTML5";
       showMapAndRoute({
         "lat":position.coords.latitude,
         "lng":position.coords.longitude

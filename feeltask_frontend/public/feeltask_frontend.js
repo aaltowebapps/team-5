@@ -113,6 +113,19 @@ $(function () {
     toggleAddEntry();
     return false;
   });
+  
+  $('#showDirections').click(function () {
+  	  if ($('#route').is(':hidden')) {
+  	    $('#map').slideUp();
+	    $('#route').slideDown();
+	    $('#showDirections').attr("data-theme", "b").removeClass("ui-btn-up-a").addClass("ui-btn-up-b");
+	  }
+	  else {
+	    $('#route').slideUp();
+	    $('#map').slideDown();
+	    $('#showDirections').attr("data-theme", "a").removeClass("ui-btn-up-b").addClass("ui-btn-up-a");
+	  }
+  });
 
 })
 
@@ -255,7 +268,7 @@ function initViews() {
         var id = target.data("id");
         var item = this.collection.get(id);
         console.debug("Clicked map for item id " + item.get("id"));
-        $.mobile.changePage("#map");
+        $.mobile.changePage("#directions");
         // TODO: Implement map show
       }
     },
