@@ -135,7 +135,7 @@ $(document).bind('pageinit', function () {
   }).css('background-color', '#1b1c1e');
 
   $("#jump").live('pageshow', function (event, ui) {
-    drawMonth(selectedDay);
+    drawMonth();
   });
 
   $(this).ajaxStart(function () {
@@ -248,7 +248,7 @@ function initViews() {
 
   //View for rendering one to do
   DayView = Backbone.View.extend({
-    tagName:"a",
+    tagName:"span",
     events:{
       click:function (event) {
         var target = $(event.currentTarget);
@@ -279,10 +279,12 @@ function initViews() {
     render:function () {
       var el = this.$el;
       el.empty();
+      el.append('<div class="week">');
       this.collection.each(function (day) {
         var dayView = new DayView({model:day});
         el.append(dayView.render().el);
       });
+      el.append('</div>');
       return this;
     }
   });

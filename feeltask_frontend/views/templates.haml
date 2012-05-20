@@ -5,4 +5,4 @@
     %a.item_btn.item_btn_edit{:href=>"#","data-role"=>"button", "data-id"=>"{{id}}", "data-inline"=>"true", "data-mini"=>"true","onClick"=>"sessionStorage.setItem(\'id\','{{id}}');"} Edit
     %a.item_btn.item_btn_delete{:href=>"#","data-role"=>"button", "data-id"=>"{{id}}", "data-theme"=>"b", "data-inline"=>"true", "data-mini"=>"true","onClick"=>"sessionStorage.setItem(\'id\','{{id}}');"} Delete
 %script#jump_day(type="text/x-handlebars-template")
-  %a.day{:href=>"#", "data-id"=> "{{id}}"} {{day_no}}
+  %a.day{:href=>"#", "data-id"=> "{{id}}", "title"=>"{{date}}"} {{day_no}}
