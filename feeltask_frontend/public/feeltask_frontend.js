@@ -49,13 +49,59 @@ $(function () {
     Templates[this.id] = Handlebars.compile($(this).html());
   });
 
+  // Submitting edited item
+  $("#edit_todo_form").submit(function (event) {
+    event.preventDefault();
+    var id = $("#edit_id").val();
+    var desc = $("#edit_description").val();
+    var todo = todos.get(id);
+    if (todo != undefined) {
+      console.log("Submit called for edit item id '" + id + "':" + todo);
+      todo.set("description", desc);
+      todo.save();
+      //todos.fetch();
+      $.mobile.changePage("#home");
+    } else {
+      console.error("todo not found? id" + id);
+    }
+    return false;
+  });
+
+  $('#addLink').click(function () {
+    toggleAddEntry();
+  });
+
+  // Replacing submit for doing new todo.
+  $("#add_entry_form").submit(function (event) {
+    console.log("Added new task...");
+    var new_todo = new Todo({description:$("#new_desc").val()})
+    new_todo.save();
+    todos.add(new_todo);
+    event.preventDefault();
+    toggleAddEntry();
+    return false;
+  });
+
+})
+
+function toggleAddEntry() {
+  if ($('#addEntry').is(':hidden')) {
+    $('#addEntry').slideDown();
+    $('#addLink').attr("data-theme", "b").removeClass("ui-btn-up-a").addClass("ui-btn-up-b");
+  }
+  else {
+    $('#addEntry').slideUp();
+    $('#addLink').attr("data-theme", "a").removeClass("ui-btn-up-b").addClass("ui-btn-up-a");
+  }
+}
+
+$(document).bind('pageinit', function () {
+  console.log("Pageinit for document started.");
+  todos = new Todos();
   //View for rendering one todo
   var ItemView = Backbone.View.extend({
     tagName:"li",
     events:{
-      "click .item_btn_delete":function (event) {
-        console.debug("Clicked delete");
-      },
       swipeleft:function (event) {
         var target = $(event.currentTarget);
         console.debug("swiped left " + target.className);
@@ -76,7 +122,10 @@ $(function () {
       }
     },
     initialize:function () {
-      this.model.bind('change', this.render, this);
+      this.model.bind('change', function () {
+        console.log("item view noticed change in model." + this.model.get("id"));
+        this.render;
+      }, this);
       this.template = Templates.todo;
     },
     render:function () {
@@ -98,6 +147,9 @@ $(function () {
   var ListView = Backbone.View.extend({
     el:$("#todosList"),
     events:{
+      "click .item_btn_delete":function (event) {
+        console.debug("Clicked delete");
+      },
       "click .item_btn_edit":function (event) {
         var target = $(event.currentTarget);
         console.debug("Clicked edit");
@@ -122,44 +174,11 @@ $(function () {
       });
       this.$el.listview('refresh');
       this.$el.find('.item_btn').button();
-      this.$el.find('.item_btn')
-
       return this;
     }
   });
-
-  // Submitting edited item
-  $("#edit_todo_form").submit(function (event) {
-    event.preventDefault();
-    var id = $("#edit_id").val();
-    var desc = $("#edit_description").val();
-    var todo = todos.get(id);
-    console.log("Submit called for edit item id '" + id + "':" + todo);
-    todo.set("description", desc);
-    todo.save();
-    $.mobile.changePage("#home");
-    return false;
-  });
-
-
   // Instantiate the views
   listView = new ListView({collection:todos});
-})
-
-function toggleAddEntry() {
-  if ($('#addEntry').is(':hidden')) {
-    $('#addEntry').slideDown();
-    $('#addLink').attr("data-theme", "b").removeClass("ui-btn-up-a").addClass("ui-btn-up-b");
-  }
-  else {
-    $('#addEntry').slideUp();
-    $('#addLink').attr("data-theme", "a").removeClass("ui-btn-up-b").addClass("ui-btn-up-a");
-  }
-}
-
-$(document).bind('pageinit', function () {
-  console.log("Pageinit for document started.");
-  todos = new Todos();
 
   $('#home_title').html(selectedDay.toString("dddd d.M.yyyy"));
 
@@ -177,20 +196,12 @@ $(document).bind('pageinit', function () {
     $('#jump_month_title').html(Date.today().toString("MMM yyyy"));
   });
 
-  $('#addLink').click(function () {
-    toggleAddEntry();
+  $("#home").bind("pageshow", function (event, ui) {
+    // console.log("Fetching tasks for date " + ISODateString(selectedDay));
+    // todos.fetch({data:{date:ISODateString(selectedDay)}});
   });
 
-  // Replacing submit for doing new todo.
-  $("#add_entry_form").submit(function (event) {
-    console.log("Added new task...");
-    var new_todo = new Todo({description:$("#new_desc").val()})
-    new_todo.save();
-    todos.add(new_todo);
-    event.preventDefault();
-    toggleAddEntry();
-    return false;
-  });
+
   $(this).ajaxStart(function () {
     $.mobile.showPageLoadingMsg();
   });
