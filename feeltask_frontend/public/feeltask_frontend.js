@@ -9,7 +9,7 @@ var Todo = Backbone.Model.extend({
   },
   url:function () {
     var end = this.id ? '/todos/' + this.id + '.json' : '/todos.json';
-    return 'http://feeltask.cloudfoundry.com' + end;
+    return 'http://0.0.0.0:3000' + end;
   },
   initialize:function () {
   }
@@ -17,28 +17,23 @@ var Todo = Backbone.Model.extend({
 
 var Todos = Backbone.Collection.extend({
   model:Todo,
-  url:"http://feeltask.cloudfoundry.com/todos.json",
+  url:"http://0.0.0.0:3000/todos.json",
   initialize:function () {
   }
 });
 
 function toggleTodoCompleted(item) {
-  var lbl = item.find('.item_row_text');
   var item_id = item.find(".item_row_id").html();
   var item = todos.get(item_id);
-
-  if (lbl.hasClass("completed")) {
+  if (item.get("state") == "completed") {
     // Mark as active
-    lbl.removeClass("completed");
-    item.state = "active";
+    item.set({state:"active", completed_at:null});
     item.save();
     console.log("item id " + item_id + " marked as open.");
-
   }
   else {
     // Mark as completed
-    lbl.addClass("completed");
-    item.state = "completed";
+    item.set({state:"completed", completed_at:new Date().toISOString()});
     item.save();
     console.log("item id " + item_id + " marked as completed.");
   }
@@ -115,7 +110,7 @@ $(document).bind('pageinit', function () {
           buttons.show('fast');
         }
       },
-      swiperight:function (event) {
+      click:function (event) {
         var target = $(event.currentTarget);
         console.debug("swiped right");
         toggleTodoCompleted(target);
@@ -123,14 +118,14 @@ $(document).bind('pageinit', function () {
     },
     initialize:function () {
       this.model.bind('change', function () {
-        console.log("item view noticed change in model." + this.model.get("id"));
+        //console.log("item view noticed change in model." + this.model.get("id"));
         this.render;
       }, this);
       this.template = Templates.todo;
     },
     render:function () {
       $(this.el).addClass("item_row").html(this.template(this.model.toJSON()));
-      if (this.model.state == "completed") {
+      if (this.model.get("state") == "completed") {
         $(this.el).find(".item_row_text").addClass("completed")
       }
       return this;
@@ -190,17 +185,10 @@ $(document).bind('pageinit', function () {
     'monochrome':true
   }).css('background-color', '#1b1c1e');
 
-
   $("#jump").live('pageshow', function (event, ui) {
     // TODO: Implement month loading here.
     $('#jump_month_title').html(Date.today().toString("MMM yyyy"));
   });
-
-  $("#home").bind("pageshow", function (event, ui) {
-    // console.log("Fetching tasks for date " + ISODateString(selectedDay));
-    // todos.fetch({data:{date:ISODateString(selectedDay)}});
-  });
-
 
   $(this).ajaxStart(function () {
     $.mobile.showPageLoadingMsg();
