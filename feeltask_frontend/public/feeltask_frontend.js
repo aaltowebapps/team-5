@@ -1,10 +1,15 @@
 var selectedDay = new Date();
 var Templates = {};
 var todos;
+var days;
 var ListView;
 var listView;
 var ItemView;
+var DayView;
+var DayListView;
+var dayListView;
 
+// Creating models for backbone
 var Todo = Backbone.Model.extend({
   defaults:{
     created_at:Date.now
@@ -20,6 +25,20 @@ var Todo = Backbone.Model.extend({
 var Todos = Backbone.Collection.extend({
   model:Todo,
   url:"http://feeltask.cloudfoundry.com/todos.json",
+  initialize:function () {
+  }
+});
+
+var Day = Backbone.Model.extend({
+  defaults:{
+    id:null
+  },
+  initialize:function () {
+  }
+});
+
+var Days = Backbone.Collection.extend({
+  model:Day,
   initialize:function () {
   }
 });
@@ -102,11 +121,8 @@ function toggleAddEntry() {
 
 $(document).bind('pageinit', function () {
   console.log("Pageinit for document started.");
-  todos = new Todos();
 
   initViews();
-  // Instantiate the views
-  listView = new ListView({collection:todos});
 
   $('#home_title').html(selectedDay.toString("dddd d.M.yyyy"));
 
@@ -138,6 +154,10 @@ $(document).bind('pageinit', function () {
 
 // Initializing views
 function initViews() {
+  // Setup instances for backbone collections
+  todos = new Todos();
+  days = new Days({id:1, dayno:"1"});
+
   //View for rendering one to do
   ItemView = Backbone.View.extend({
     tagName:"li",
@@ -225,4 +245,49 @@ function initViews() {
       return this;
     }
   });
+
+  //View for rendering one to do
+  DayView = Backbone.View.extend({
+    tagName:"a",
+    events:{
+      click:function (event) {
+        var target = $(event.currentTarget);
+        console.debug("Clicked day!");
+      }
+    },
+    initialize:function () {
+      this.model.bind('change', function () {
+        this.render;
+      }, this);
+      this.template = Templates.jump_day;
+    },
+    render:function () {
+      $(this.el).html(this.template(this.model.toJSON()));
+      return this;
+    }
+  });
+
+  //View for rendering the list of todos
+  DayListView = Backbone.View.extend({
+    el:$("#weeks"),
+    events:{
+    },
+    initialize:function () {
+      this.collection.bind('reset', this.render, this);
+      this.collection.bind('all', this.render, this);
+    },
+    render:function () {
+      var el = this.$el;
+      el.empty();
+      this.collection.each(function (day) {
+        var dayView = new DayView({model:day});
+        el.append(dayView.render().el);
+      });
+      return this;
+    }
+  });
+
+  // Instantiate the views
+  listView = new ListView({collection:todos});
+  dayListView = new DayListView({collection:days});
 }
