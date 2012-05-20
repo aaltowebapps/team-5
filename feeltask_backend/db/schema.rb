@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120405181116) do
+ActiveRecord::Schema.define(:version => 20120520180637) do
 
   create_table "todos", :force => true do |t|
     t.integer  "context_id"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20120405181116) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.string   "tags"
+    t.string   "location"
   end
 
   add_index "todos", ["tags"], :name => "index_todos_on_tags"
