@@ -1,7 +1,9 @@
 var selectedDay = new Date();
 var Templates = {};
 var todos;
+var ListView;
 var listView;
+var ItemView;
 
 var Todo = Backbone.Model.extend({
   defaults:{
@@ -101,8 +103,43 @@ function toggleAddEntry() {
 $(document).bind('pageinit', function () {
   console.log("Pageinit for document started.");
   todos = new Todos();
-  //View for rendering one todo
-  var ItemView = Backbone.View.extend({
+
+  initViews();
+  // Instantiate the views
+  listView = new ListView({collection:todos});
+
+  $('#home_title').html(selectedDay.toString("dddd d.M.yyyy"));
+
+  $('#addEntry').noisy({
+    'intensity':5,
+    'size':'200',
+    'opacity':0.04,
+    'fallback':'',
+    'monochrome':true
+  }).css('background-color', '#1b1c1e');
+
+  $("#jump").live('pageshow', function (event, ui) {
+    drawMonth(selectedDay);
+  });
+
+  $(this).ajaxStart(function () {
+    $.mobile.showPageLoadingMsg();
+  });
+
+  $(this).ajaxStop(function () {
+    $.mobile.hidePageLoadingMsg();
+  });
+
+  console.log("Fetching tasks for date " + ISODateString(selectedDay));
+  todos.fetch({data:{date:ISODateString(selectedDay)}});
+
+});
+
+
+// Initializing views
+function initViews() {
+  //View for rendering one to do
+  ItemView = Backbone.View.extend({
     tagName:"li",
     events:{
       swipeleft:function (event) {
@@ -147,7 +184,7 @@ $(document).bind('pageinit', function () {
   });
 
   //View for rendering the list of todos
-  var ListView = Backbone.View.extend({
+  ListView = Backbone.View.extend({
     el:$("#todosList"),
     events:{
       "click .item_btn_delete":function (event) {
@@ -188,33 +225,4 @@ $(document).bind('pageinit', function () {
       return this;
     }
   });
-  // Instantiate the views
-  listView = new ListView({collection:todos});
-
-  $('#home_title').html(selectedDay.toString("dddd d.M.yyyy"));
-
-  $('#addEntry').noisy({
-    'intensity':5,
-    'size':'200',
-    'opacity':0.04,
-    'fallback':'',
-    'monochrome':true
-  }).css('background-color', '#1b1c1e');
-
-  $("#jump").live('pageshow', function (event, ui) {
-    // TODO: Implement month loading here.
-    $('#jump_month_title').html(Date.today().toString("MMM yyyy"));
-  });
-
-  $(this).ajaxStart(function () {
-    $.mobile.showPageLoadingMsg();
-  });
-
-  $(this).ajaxStop(function () {
-    $.mobile.hidePageLoadingMsg();
-  });
-
-  console.log("Fetching tasks for date " + ISODateString(selectedDay));
-  todos.fetch({data:{date:ISODateString(selectedDay)}});
-
-});
+}

@@ -41,7 +41,7 @@
     %a(href="#home" data-icon="grid" data-iconpos="notext" data-transition="slide" data-theme="b" data-direction="reverse")Jump
     
   #jump-container(data-role="content")
-    .week
+    .week.week_titles
       %a.day.name Mon
       %a.day.name Tue
       %a.day.name Wed
@@ -49,46 +49,47 @@
       %a.day.name Fri
       %a.day.name Sat
       %a.day.name Sun
-    .week
-      %a.day(href="#")  
-      %a.day(href="#") 1
-      %a.day(href="#") 2
-      %a.day(href="#") 3
-      %a.day(href="#") 4
-      %a.day(href="#") 5
-      %a.day(href="#") 6
-    .week
-      %a.day(href="#") 7
-      %a.day(href="#") 8
-      %a.day(href="#") 9
-      %a.day.current(href="#") 10
-      %a.day(href="#") 11
-      %a.day(href="#") 12
-      %a.day(href="#") 13
-    .week
-      %a.day(href="#") 14
-      %a.day(href="#") 15
-      %a.day(href="#") 16
-      %a.day(href="#") 17
-      %a.day(href="#") 18
-      %a.day(href="#") 19
-      %a.day(href="#") 20
-    .week
-      %a.day(href="#") 21
-      %a.day(href="#") 22
-      %a.day(href="#") 23
-      %a.day(href="#") 24
-      %a.day(href="#") 25
-      %a.day(href="#") 26
-      %a.day(href="#") 27
-    .week
-      %a.day(href="#") 28
-      %a.day(href="#") 29
-      %a.day(href="#") 30
-      %a.day(href="#") 31
-      %a.day(href="#")  
-      %a.day(href="#")  
-      %a.day(href="#")  
+    .weeks
+      .week
+        %a.day(href="#")
+        %a.day(href="#") 1
+        %a.day(href="#") 2
+        %a.day(href="#") 3
+        %a.day(href="#") 4
+        %a.day(href="#") 5
+        %a.day(href="#") 6
+      .week
+        %a.day(href="#") 7
+        %a.day(href="#") 8
+        %a.day(href="#") 9
+        %a.day.current(href="#") 10
+        %a.day(href="#") 11
+        %a.day(href="#") 12
+        %a.day(href="#") 13
+      .week
+        %a.day(href="#") 14
+        %a.day(href="#") 15
+        %a.day(href="#") 16
+        %a.day(href="#") 17
+        %a.day(href="#") 18
+        %a.day(href="#") 19
+        %a.day(href="#") 20
+      .week
+        %a.day(href="#") 21
+        %a.day(href="#") 22
+        %a.day(href="#") 23
+        %a.day(href="#") 24
+        %a.day(href="#") 25
+        %a.day(href="#") 26
+        %a.day(href="#") 27
+      .week
+        %a.day(href="#") 28
+        %a.day(href="#") 29
+        %a.day(href="#") 30
+        %a.day(href="#") 31
+        %a.day(href="#")
+        %a.day(href="#")
+        %a.day(href="#")
   
   %script(type="text/javascript")
     $('#jump').noisy({
