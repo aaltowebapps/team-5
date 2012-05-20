@@ -19,7 +19,7 @@ function drawMonth() {
   // Loop from start to end
   for (loopCount = 1; loopCount <= endTime.getDate(); loopCount += 1) {
     var dateText = loopCount + "." + (startTime.getMonth() + 1) + "." + startTime.getFullYear();
-    console.log("Draw day " + loopCount + ":" + dateText);
+    //console.log("Draw day " + loopCount + ":" + dateText);
     var loopDate = Date.parseExact(dateText, "d.M.yyyy");
     var day = new Day({id:loopCount, day_no:loopCount, date:loopDate.toString("d.M.yyyy")});
     days.add(day);
