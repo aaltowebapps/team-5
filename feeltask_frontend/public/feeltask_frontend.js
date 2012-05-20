@@ -67,6 +67,13 @@ function toggleTodoCompleted(item_li) {
     console.log("item id " + id + " marked as completed.");
   }
 }
+
+// This is called when phone is shaked.
+function mobileShakeEvent() {
+  console.log("mobile shaked!");
+  fetchTodos();
+}
+
 $(function () {
   //Load the templates and store them in a global variable
   $('script[type="text/x-handlebars-template"]').each(function () {
