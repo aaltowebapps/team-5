@@ -43,7 +43,6 @@ div.completed {
 }
 
 div.week {
-
 }
 
 a.day {
@@ -88,32 +87,19 @@ body {
 }
 
 #mapview {
-<<<<<<< HEAD
-	padding: 0px !important;
-	height: 100%;
-}
-
-#map {
-	width: 100%;
-	height: 410px;
-}
-
-#route {
-	display: none;
-	height: 100%;
-	padding: 15px;
-=======
-
+  padding: 0px !important;
+  height: 100%;
 }
 
 #map {
   width: 100%;
-  height: 400px;
+  height: 410px;
 }
 
 #route {
-  width: 100%;
->>>>>>> 7e6bf8fcddf36a0fed31328266bb6e36d23d3031
+  display: none;
+  height: 100%;
+  padding: 15px;
 }
 
 #route {
@@ -121,9 +107,6 @@ body {
 }
 
 #method {
-<<<<<<< HEAD
-	
-=======
   padding: 10px;
   opacity: .9;
   -moz-opacity: .9;
@@ -132,7 +115,6 @@ body {
   border-radius: 3px;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
->>>>>>> 7e6bf8fcddf36a0fed31328266bb6e36d23d3031
 }
 
 /* END map page */
