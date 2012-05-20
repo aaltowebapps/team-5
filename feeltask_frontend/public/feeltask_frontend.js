@@ -128,6 +128,20 @@ $(function () {
     }
   });
 
+  // Submitting edited item
+  $("#edit_todo_form").submit(function (event) {
+    event.preventDefault();
+    var id = $("#edit_id").val();
+    var desc = $("#edit_description").val();
+    var todo = todos.get(id);
+    console.log("Submit called for edit item id '" + id + "':" + todo);
+    todo.set("description", desc);
+    todo.save();
+    $.mobile.changePage("#home");
+    return false;
+  });
+
+
   // Instantiate the views
   listView = new ListView({collection:todos});
 })
@@ -165,14 +179,6 @@ $(document).bind('pageinit', function () {
 
   $('#addLink').click(function () {
     toggleAddEntry();
-  });
-
-  // Submitting edited item
-  $("#edit_todo_form").submit(function (event) {
-    console.log("Submitting editing item");
-    event.preventDefault();
-    $.mobile.changePage("#home");
-    return false;
   });
 
   // Replacing submit for doing new todo.

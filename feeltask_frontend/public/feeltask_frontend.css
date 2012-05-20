@@ -23,7 +23,7 @@ div.buttonContainer {
   position: absolute;
   right: 0px;
   top: 3px;
-  /*display: none;*/
+  display: none;
 }
 
 .item_row {
