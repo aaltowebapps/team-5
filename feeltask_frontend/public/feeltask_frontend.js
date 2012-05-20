@@ -273,6 +273,10 @@ function initViews() {
     },
     render:function () {
       $(this.el).html(this.template(this.model.toJSON()));
+      var date = Date.parseExact(this.model.get("date"), "d.M.yyyy");
+      if (Date.today().compareTo(date) == 0) {
+        $(this.el).find("a").addClass("current")
+      }
       return this;
     }
   });
