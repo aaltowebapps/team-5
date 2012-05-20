@@ -197,8 +197,14 @@ function initViews() {
     },
     render:function () {
       $(this.el).addClass("item_row").html(this.template(this.model.toJSON()));
+      // Mark as done if needed.
       if ((this.model.get("state") == "completed" ) && (this.model.get("completed_at") != null )) {
-        $(this.el).find(".item_row_text").addClass("completed")
+        $(this.el).find(".item_row_text").addClass("completed");
+      }
+      // Hide icon map if location doesn't exist
+      var loc = this.model.get("location");
+      if ((loc == undefined) || (loc == null) || (loc == "")) {
+        $(this.el).find(".item_btn_map").hide();
       }
       return this;
     },
@@ -236,6 +242,13 @@ function initViews() {
         $("#edit_description").val(desc);
         $("#edit_location").val(loc);
         $.mobile.changePage("#edit");
+      },
+      "click .item_btn_map":function (event) {
+        var target = $(event.currentTarget);
+        var id = target.data("id");
+        var item = this.collection.get(id);
+        console.debug("Clicked map for item id " + item.get("id"));
+        // TODO: Implement map show
       }
     },
     initialize:function () {
@@ -296,12 +309,10 @@ function initViews() {
     render:function () {
       var el = this.$el;
       el.empty();
-      el.append('<div class="week" data-id="' + this.collection.size() + '">');
       this.collection.each(function (day) {
         var dayView = new DayView({model:day});
         el.append(dayView.render().el);
       });
-      el.append('</div>');
       return this;
     }
   });
