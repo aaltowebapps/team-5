@@ -9,21 +9,18 @@ var Todo = Backbone.Model.extend({
   },
   url:function () {
     var end = this.id ? '/todos/' + this.id + '.json' : '/todos.json';
-    return 'http://0.0.0.0:3000' + end;
+    return 'http://feeltask.cloudfoundry.com' + end;
   },
   initialize:function () {
-    console.log("New todo initialized.");
   }
 });
 
 var Todos = Backbone.Collection.extend({
   model:Todo,
-  url:"http://0.0.0.0:3000/todos.json",
+  url:"http://feeltask.cloudfoundry.com/todos.json",
   initialize:function () {
-    console.log("New todo list initialized.");
   }
 });
-
 
 function toggleTodoCompleted(item) {
   var lbl = item.find('.item_row_text');
@@ -56,6 +53,27 @@ $(function () {
   var ItemView = Backbone.View.extend({
     tagName:"li",
     events:{
+      "click .item_btn_delete":function (event) {
+        console.debug("Clicked delete");
+      },
+      swipeleft:function (event) {
+        var target = $(event.currentTarget);
+        console.debug("swiped left " + target.className);
+        var buttons = target.find('.buttonContainer');
+        if (buttons.is(':visible')) {
+          console.debug("Hiding buttons");
+          buttons.hide('fast');
+        }
+        else {
+          console.debug("Showing buttons");
+          buttons.show('fast');
+        }
+      },
+      swiperight:function (event) {
+        var target = $(event.currentTarget);
+        console.debug("swiped right");
+        toggleTodoCompleted(target);
+      }
     },
     initialize:function () {
       this.model.bind('change', this.render, this);
@@ -80,6 +98,16 @@ $(function () {
   var ListView = Backbone.View.extend({
     el:$("#todosList"),
     events:{
+      "click .item_btn_edit":function (event) {
+        var target = $(event.currentTarget);
+        console.debug("Clicked edit");
+        var id = target.data("id");
+        var item = this.collection.get(id);
+        var desc = item.get("description");
+        $("#edit_id").val(id);
+        $("#edit_description").val(desc);
+        $.mobile.changePage("#edit");
+      }
     },
     initialize:function () {
       this.collection.bind('reset', this.render, this);
@@ -94,6 +122,7 @@ $(function () {
       });
       this.$el.listview('refresh');
       this.$el.find('.item_btn').button();
+      this.$el.find('.item_btn')
 
       return this;
     }
@@ -128,53 +157,24 @@ $(document).bind('pageinit', function () {
     'monochrome':true
   }).css('background-color', '#1b1c1e');
 
-  $(this).ajaxStart(function () {
-    $.mobile.showPageLoadingMsg();
-  });
-
-  $(this).ajaxStop(function () {
-    $.mobile.hidePageLoadingMsg();
-  });
-
-  $("#home").live('pageshow', function (event, ui) {
-    console.log("Fetching tasks for date " + ISODateString(selectedDay));
-    todos.fetch({data:{date:ISODateString(selectedDay)}});
-  });
 
   $("#jump").live('pageshow', function (event, ui) {
     // TODO: Implement month loading here.
     $('#jump_month_title').html(Date.today().toString("MMM yyyy"));
   });
 
-  $("#show").live('pageshow', function (event, ui) {
-    var todo_id = sessionStorage.getItem("id");
-    console.log("Showing todo id=" + todo_id + " Previous page was:" + ui.prevPage);
-    $("#show_title").html("Showing todo " + todo_id);
-  });
-
   $('#addLink').click(function () {
     toggleAddEntry();
   });
 
-  // Adding behaviour for todos when swiping left.
-  $('.item_row').live('swipeleft', function () {
-    console.log("swiped left " + $(this));
-    var buttons = $(this).find('.buttonContainer');
-    if (buttons.is(':visible')) {
-      console.log("Hiding buttons");
-      buttons.hide('fast');
-    }
-    else {
-      console.log("Showing buttons");
-      buttons.show('fast');
-    }
+  // Submitting edited item
+  $("#edit_todo_form").submit(function (event) {
+    console.log("Submitting editing item");
+    event.preventDefault();
+    $.mobile.changePage("#home");
+    return false;
   });
 
-  // Adding behaviour for todos when swiping right.
-  $('.item_row').live('swiperight', function () {
-    console.log("swiped right " + $(this));
-    toggleTodoCompleted($(this));
-  });
   // Replacing submit for doing new todo.
   $("#add_entry_form").submit(function (event) {
     console.log("Added new task...");
@@ -185,4 +185,15 @@ $(document).bind('pageinit', function () {
     toggleAddEntry();
     return false;
   });
+  $(this).ajaxStart(function () {
+    $.mobile.showPageLoadingMsg();
+  });
+
+  $(this).ajaxStop(function () {
+    $.mobile.hidePageLoadingMsg();
+  });
+
+  console.log("Fetching tasks for date " + ISODateString(selectedDay));
+  todos.fetch({data:{date:ISODateString(selectedDay)}});
+
 });

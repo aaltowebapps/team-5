@@ -7,24 +7,29 @@
  
   #addEntry
     %form#add_entry_form
-      %input#new_desc(type="text" placeholder="Entry name here...")
+      %input#new_desc(type="text" placeholder="Todo description here...")
       %input(type="submit" value="Add")
  
   %ul#todosList(data-role="listview" data-theme="c")
+    %li Loading todos...
   #basic_help
     %h2 Help
     %ul
       %li Swipe right = mark as done
       %li Swipe left = Get operations
 
-/Start show page
+/Start edit page
 
-#show(data-role="page")
+#edit(data-role="page")
   = haml :header
 
-  %h2#show_title Show todo
-  %p
-    Implement.
+  %h2 Edit todo
+  %form#edit_todo_form
+    %input#edit_id(type="text")
+    %label Description
+    %input#edit_description(type="text")
+    %input(type="submit" data-theme="b" value="Update")
+    %a(href="#home" data-icon="delete" data-theme="a" data-role="button") Cancel
 
   = haml :footer
   
@@ -32,7 +37,6 @@
 
 #jump(data-role="page")
   %div(data-role="header")
-    %a(href="#add" data-icon="plus" data-iconpos="notext" data-transition="slide")Add
     %h1#jump_month_title dynamically month
     %a(href="#home" data-icon="grid" data-iconpos="notext" data-transition="slide" data-theme="b" data-direction="reverse")Jump
     

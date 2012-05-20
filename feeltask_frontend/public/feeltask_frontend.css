@@ -23,7 +23,7 @@ div.buttonContainer {
   position: absolute;
   right: 0px;
   top: 3px;
-  display: none;
+  /*display: none;*/
 }
 
 .item_row {
@@ -31,6 +31,10 @@ div.buttonContainer {
 }
 
 .item_row_id {
+  display: none;
+}
+
+#edit_id {
   display: none;
 }
 
