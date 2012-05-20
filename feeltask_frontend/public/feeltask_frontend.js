@@ -9,7 +9,7 @@ var Todo = Backbone.Model.extend({
   },
   url:function () {
     var end = this.id ? '/todos/' + this.id + '.json' : '/todos.json';
-    return 'http://0.0.0.0:3000' + end;
+    return 'http://feeltask.cloudfoundry.com' + end;
   },
   initialize:function () {
   }
@@ -17,7 +17,7 @@ var Todo = Backbone.Model.extend({
 
 var Todos = Backbone.Collection.extend({
   model:Todo,
-  url:"http://0.0.0.0:3000/todos.json",
+  url:"http://feeltask.cloudfoundry.com/todos.json",
   initialize:function () {
   }
 });
