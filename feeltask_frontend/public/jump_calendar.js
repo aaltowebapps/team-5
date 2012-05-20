@@ -8,6 +8,7 @@
 function drawMonth() {
   console.log("Drawing month for " + selectedDay.toISOString());
   $('#jump_month_title').html(selectedDay.toString("MMM yyyy"));
+
   days.reset();
   var startTime = new Date();
   startTime.setTime(selectedDay.getTime());
@@ -15,7 +16,7 @@ function drawMonth() {
   var endTime = new Date();
   endTime.setTime(selectedDay.getTime());
   endTime.moveToLastDayOfMonth();
-  // First week
+  // Loop from start to end
   for (loopCount = 1; loopCount <= endTime.getDate(); loopCount += 1) {
     var dateText = loopCount + "." + (startTime.getMonth() + 1) + "." + startTime.getFullYear();
     console.log("Draw day " + loopCount + ":" + dateText);

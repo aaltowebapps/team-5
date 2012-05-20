@@ -108,6 +108,12 @@ $(function () {
 
 })
 
+function fetchTodos() {
+  $('#home_title').html(selectedDay.toString("dddd d.M.yyyy"));
+  console.log("Fetching tasks for date " + ISODateString(selectedDay));
+  todos.fetch({data:{date:ISODateString(selectedDay)}});
+}
+
 function toggleAddEntry() {
   if ($('#addEntry').is(':hidden')) {
     $('#addEntry').slideDown();
@@ -124,8 +130,6 @@ $(document).bind('pageinit', function () {
 
   initViews();
 
-  $('#home_title').html(selectedDay.toString("dddd d.M.yyyy"));
-
   $('#addEntry').noisy({
     'intensity':5,
     'size':'200',
@@ -134,9 +138,13 @@ $(document).bind('pageinit', function () {
     'monochrome':true
   }).css('background-color', '#1b1c1e');
 
-  $("#jump").live('pageshow', function (event, ui) {
+  $("#jump").live('pagebeforeshow', function (event, ui) {
     drawMonth();
   });
+
+  //$("#jump").live('pageshow', function (event, ui) {
+  //  drawMonth();
+  //});
 
   $(this).ajaxStart(function () {
     $.mobile.showPageLoadingMsg();
@@ -146,9 +154,7 @@ $(document).bind('pageinit', function () {
     $.mobile.hidePageLoadingMsg();
   });
 
-  console.log("Fetching tasks for date " + ISODateString(selectedDay));
-  todos.fetch({data:{date:ISODateString(selectedDay)}});
-
+  fetchTodos();
 });
 
 
@@ -248,11 +254,15 @@ function initViews() {
 
   //View for rendering one to do
   DayView = Backbone.View.extend({
-    tagName:"span",
+    tagName:"div",
     events:{
       click:function (event) {
         var target = $(event.currentTarget);
-        console.debug("Clicked day!");
+        var date = target.find("a").data("date");
+        console.debug("Clicked day " + date);
+        selectedDay = Date.parseExact(date, "d.M.yyyy");
+        fetchTodos();
+        $.mobile.changePage("#home");
       }
     },
     initialize:function () {
@@ -279,7 +289,7 @@ function initViews() {
     render:function () {
       var el = this.$el;
       el.empty();
-      el.append('<div class="week">');
+      el.append('<div class="week" data-id="' + this.collection.size() + '">');
       this.collection.each(function (day) {
         var dayView = new DayView({model:day});
         el.append(dayView.render().el);
