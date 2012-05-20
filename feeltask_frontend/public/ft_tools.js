@@ -1,3 +1,10 @@
+/**
+ * This file includes basic tools and snippets for feeltask front.
+ *
+ * User: mikkoruokojoki
+ */
+
+
 // In case we forget to take out console statements. IE becomes very unhappy when we forget. Let's not make IE unhappy
 if (typeof(console) === 'undefined') {
   var console = {}
