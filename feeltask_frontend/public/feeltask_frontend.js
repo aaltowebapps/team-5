@@ -45,7 +45,7 @@ var Days = Backbone.Collection.extend({
 
 // Get item from given li element.
 function get_li_item(liElem) {
-  var id = liElem.data("id");
+  var id = liElem.find(".item_row_id").html();
   var item = todos.get(id);
   return item;
 }
@@ -217,9 +217,9 @@ function initViews() {
         var target = $(event.currentTarget);
         console.debug("Clicked delete");
         if (confirm("Are you sure?")) {
-          var item = get_li_item(target);
+          var item = get_li_item(target.parents("li"));
           if (item.get("state") == "active") {
-            toggleTodoCompleted(target);
+            toggleTodoCompleted(target.parents("li"));
           }
           todos.remove(item);
         }
