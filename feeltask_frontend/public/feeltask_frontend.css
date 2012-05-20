@@ -85,3 +85,44 @@ a.name {
 }
 
 /* END jump page */
+
+/* START map page */
+
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#mapview {
+	
+}
+
+#map {
+	width: 100%;
+	height: 400px;
+}
+
+#route {
+	width: 100%;
+}
+
+#route {
+	overflow-y:auto;
+}
+#method {
+	padding:10px;
+	opacity: .9;
+	-moz-opacity: .9;
+	z-index: 10;
+	background-color:#fff;
+	border-radius:3px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+}
+
+/* END map page */
