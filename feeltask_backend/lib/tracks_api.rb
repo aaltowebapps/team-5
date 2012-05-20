@@ -19,7 +19,8 @@ class TracksApi
 
   # Update todo in Tracks
   def update_todo(todo)
-    values={:todo => {:id => todo.id, :state => todo.state, :project_id => nil, :context_id => todo.context_id, :description => todo.description}}
+    values={:todo => {:id => todo.id, :state => todo.state, :project_id => nil, :context_id => todo.context_id,
+                      :description => todo.description, :completed_at => todo.completed_at}}
     options={:basic_auth => @auth, :body => values}
     Rails.logger.debug "Options for PUT: #{options}"
     response=self.class.put("#{@base_uri}/todos/#{todo.id}.xml", options)
