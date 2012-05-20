@@ -22,20 +22,28 @@ var Todos = Backbone.Collection.extend({
   }
 });
 
-function toggleTodoCompleted(item) {
-  var item_id = item.find(".item_row_id").html();
-  var item = todos.get(item_id);
+// Get item from given li element.
+function get_li_item(liElem) {
+  var id = liElem.data("id");
+  var item = todos.get(id);
+  return item;
+}
+
+// toggle to do completed or active. With given li-element.
+function toggleTodoCompleted(item_li) {
+  var item = get_li_item(item_li);
+  var id = item.get("id");
   if (item.get("state") == "completed") {
     // Mark as active
     item.set({state:"active", completed_at:null});
     item.save();
-    console.log("item id " + item_id + " marked as open.");
+    console.log("item id " + id + " marked as open.");
   }
   else {
     // Mark as completed
     item.set({state:"completed", completed_at:new Date().toISOString()});
     item.save();
-    console.log("item id " + item_id + " marked as completed.");
+    console.log("item id " + id + " marked as completed.");
   }
 }
 $(function () {
@@ -110,7 +118,7 @@ $(document).bind('pageinit', function () {
           buttons.show('fast');
         }
       },
-      click:function (event) {
+      swiperight:function (event) {
         var target = $(event.currentTarget);
         console.debug("swiped right");
         toggleTodoCompleted(target);
@@ -125,7 +133,7 @@ $(document).bind('pageinit', function () {
     },
     render:function () {
       $(this.el).addClass("item_row").html(this.template(this.model.toJSON()));
-      if (this.model.get("state") == "completed") {
+      if ((this.model.get("state") == "completed" ) && (this.model.get("completed_at") != null )) {
         $(this.el).find(".item_row_text").addClass("completed")
       }
       return this;
@@ -143,7 +151,15 @@ $(document).bind('pageinit', function () {
     el:$("#todosList"),
     events:{
       "click .item_btn_delete":function (event) {
+        var target = $(event.currentTarget);
         console.debug("Clicked delete");
+        if (confirm("Are you sure?")) {
+          var item = get_li_item(target);
+          if (item.get("state") == "active") {
+            toggleTodoCompleted(target);
+          }
+          todos.remove(item);
+        }
       },
       "click .item_btn_edit":function (event) {
         var target = $(event.currentTarget);
