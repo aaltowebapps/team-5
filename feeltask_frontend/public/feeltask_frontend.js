@@ -78,10 +78,11 @@ $(function () {
     event.preventDefault();
     var id = $("#edit_id").val();
     var desc = $("#edit_description").val();
+    var loc = $("#edit_location").val();
     var todo = todos.get(id);
     if (todo != undefined) {
       console.log("Submit called for edit item id '" + id + "':" + todo);
-      todo.set("description", desc);
+      todo.set({description:desc, location:loc});
       todo.save();
       //todos.fetch();
       $.mobile.changePage("#home");
@@ -230,8 +231,10 @@ function initViews() {
         var id = target.data("id");
         var item = this.collection.get(id);
         var desc = item.get("description");
+        var loc = item.get("location");
         $("#edit_id").val(id);
         $("#edit_description").val(desc);
+        $("#edit_location").val(loc);
         $.mobile.changePage("#edit");
       }
     },
