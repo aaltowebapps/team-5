@@ -1,17 +1,6 @@
-[required] {
-  border-color: #88a;
-  -webkit-box-shadow: 0 0 3px rgba(0, 0, 255, .5);
-}
-
-:invalid {
-  border-color: #e88;
-  -webkit-box-shadow: 0 0 5px rgba(255, 0, 0, .8);
-}
-
-input.invalid {
-  background: url(error.png) no-repeat 4px 6px;
-  padding-left: 30px;
-}
+/* Feeltask frontend styles
+ *
+*/
 
 /* Task list styling */
 
@@ -89,40 +78,56 @@ a.name {
 /* START map page */
 
 html {
-	height: 100%;
+  height: 100%;
 }
 
 body {
-	height: 100%;
-	margin: 0;
-	padding: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 #mapview {
-	
+
 }
 
 #map {
-	width: 100%;
-	height: 400px;
+  width: 100%;
+  height: 400px;
 }
 
 #route {
-	width: 100%;
+  width: 100%;
 }
 
 #route {
-	overflow-y:auto;
+  overflow-y: auto;
 }
+
 #method {
-	padding:10px;
-	opacity: .9;
-	-moz-opacity: .9;
-	z-index: 10;
-	background-color:#fff;
-	border-radius:3px;
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
+  padding: 10px;
+  opacity: .9;
+  -moz-opacity: .9;
+  z-index: 10;
+  background-color: #fff;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
 }
 
 /* END map page */
+
+[required] {
+  border-color: #88a;
+  -webkit-box-shadow: 0 0 3px rgba(0, 0, 255, .5);
+}
+
+:invalid {
+  border-color: #e88;
+  -webkit-box-shadow: 0 0 5px rgba(255, 0, 0, .8);
+}
+
+input.invalid {
+  background: url(error.png) no-repeat 4px 6px;
+  padding-left: 30px;
+}

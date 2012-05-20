@@ -1,3 +1,8 @@
+/**
+ * This file includes all code for implementing feeltask front.
+ *
+ */
+
 var selectedDay = new Date();
 var Templates = {};
 var todos;

@@ -1,10 +1,12 @@
 /**
+ * This file includes tools and methods for handling jump calendar.
+ *
  * User: mikkoruokojoki
  * Date: 20.5.2012
  * Time: 14.39
  */
 
-// Draw selected month from day.
+// Draw selected month. Uses global variable selectedDay.
 function drawMonth() {
   console.log("Drawing month for " + selectedDay.toISOString());
   $('#jump_month_title').html(selectedDay.toString("MMM yyyy"));
