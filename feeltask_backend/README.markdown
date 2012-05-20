@@ -1,8 +1,15 @@
 # FeelTask backend
 
-This is FeelTask backend application. It provides REST API for todos and other things related to todos. It can be used as combining source of different todo systems.
+This is FeelTask backend application. It provides REST API for todos and other things related to todos. It can be used as combining source of different todo systems. Backend application is built with Ruby on Rails (v3.2.2).
 
-Backend application is built with Ruby on Rails (v3.2.2).
+## Why seperate backend and frontend?
+
+Couple of reasons:
+
+1. Backend serves different purpose and can have multiple connections to todo sources like Tracks. It can also do batch jobs in background and serve basic web interface to users as well.
+1. Frontend is for mobile users and gives good seperation from interfaces.
+1. Frontend seperate implementation does not restrict for deployment options.
+1. Frontend seperation gives developers more freedom to develop.
 
 ## Usage
 
