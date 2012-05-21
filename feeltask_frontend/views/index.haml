@@ -14,14 +14,13 @@
     %li.animated.bounceInLeft Loading todos, please wait...
       
   %div(data-role="footer" data-position="fixed")
-    %a#showDirections(href="#" data-icon="arrow-l" data-transition="slide")Prev
-    %a#showDirections(href="#info" data-icon="info" data-transition="slide")Info
-    %a#showDirections(href="#" data-icon="arrow-r" data-transition="slide")Next
+    %a#showDirections(href="#info" id="helpbutton" data-icon="info" data-transition="slide" data-mini="true")Help
 
 /Start edit page
 
 #edit(data-role="page" data-title="Edit todo - Feeltask")
-  = haml :header
+  %div(data-role="header" data-position="fixed")
+    %h2 Edit entry
 
   %h2 Edit todo
   %form#edit_todo_form
@@ -32,13 +31,11 @@
     %input#edit_location(type="text")
     %input(type="submit" data-theme="b" value="Update")
     %a(href="#home" data-icon="delete" data-theme="a" data-role="button") Cancel
-
-  = haml :footer
   
 /Start jump page
 
 #jump(data-role="page" data-title="Select date - Feeltask")
-  %div(data-role="header")
+  %div(data-role="header" data-position="fixed")
     %a(href="#home" data-icon="arrow-l" data-iconpos="notext" data-transition="slide" data-direction="reverse")Jump
     %h2#jump_month_title dynamically month
     
@@ -54,7 +51,7 @@
     #weeks
     
 #directions(data-role="page" data-title="Show directions - Feeltask")
-  %div(data-role="header")
+  %div(data-role="header" data-position="fixed")
     %a(href="#home" data-icon="arrow-l" data-iconpos="notext" data-transition="slide" data-direction="reverse")Back
     %h2 Map
     
@@ -67,7 +64,7 @@
     %a#showRoute(href="#")Show directions
     
 #info(data-role="page" data-title="Information")
-  %div(data-role="header")
+  %div(data-role="header" data-position="fixed")
     %a(href="#home" data-icon="arrow-l" data-iconpos="notext" data-transition="slide" data-direction="reverse")Back
     %h2 Information
     

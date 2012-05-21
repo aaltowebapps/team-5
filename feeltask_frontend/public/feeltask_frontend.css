@@ -36,6 +36,10 @@ div.completed {
   color: #c8c8c8 !important;
 }
 
+#helpbutton {
+	text-align: center;
+}
+
 /* Jump page */
 
 #jump {

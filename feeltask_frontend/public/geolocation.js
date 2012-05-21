@@ -6,10 +6,16 @@ var destinationName = "";
 
 function setDestination(loc) {
 	console.log("set destination");
-	var destinationName = loc;
+	destinationName = loc;
 	console.log(destinationName);
-	initiate_geolocation();
+	initiate_geolocation(true);
 	console.log("geolocation initiated");
+	showDestination();
+}
+
+function showDestination() {
+	console.log(destinationName);
+	console.log("showDestination finished");
 }
 
 function initiate_geolocation(skipHTML5) {
@@ -38,6 +44,7 @@ function initiate_geolocation(skipHTML5) {
       } else {
         alert("Google Geocoder was unable to get the client position");
       }
+      console.log("showing map and route");
     }
   }
 }
