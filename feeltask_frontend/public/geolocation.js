@@ -2,7 +2,7 @@ var map; //the google map
 var directionsService; //service that provides directions to get to our destination
 var directionsDisplay; //rendeder that draws directions on map
 //var destinationName = "Konemiehentie 2, Espoo"; //our destination. Set yours!
-var destinationName = "";
+var destinationName = "Iirislahdentie 23 Espoo";
 
 function setDestination(loc) {
 	console.log("set destination");
