@@ -1,7 +1,16 @@
 var map; //the google map
 var directionsService; //service that provides directions to get to our destination
 var directionsDisplay; //rendeder that draws directions on map
-var destinationName = "Konemiehentie 2, Espoo"; //our destination. Set yours!
+//var destinationName = "Konemiehentie 2, Espoo"; //our destination. Set yours!
+var destinationName = "";
+
+function setDestination(loc) {
+	console.log("set destination");
+	var destinationName = loc;
+	console.log(destinationName);
+	initiate_geolocation();
+	console.log("geolocation initiated");
+}
 
 function initiate_geolocation(skipHTML5) {
 
