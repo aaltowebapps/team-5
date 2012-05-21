@@ -50,6 +50,15 @@
       %a.day.name Sun
     #weeks
     
+  %script(type="text/javascript")
+    $('#jump').noisy({
+    'intensity' : 5, 
+    'size' : '200', 
+    'opacity' : 0.04, 
+    'fallback' : '', 
+    'monochrome' : true
+    }).css('background-color', '#1b1c1e');
+    
 #directions(data-role="page" data-title="Show directions - Feeltask")
   %div(data-role="header" data-position="fixed")
     %a(href="#home" data-icon="arrow-l" data-iconpos="notext" data-transition="slide" data-direction="reverse")Back
