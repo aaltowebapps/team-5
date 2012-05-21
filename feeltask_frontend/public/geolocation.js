@@ -8,7 +8,7 @@ function setDestination(loc) {
 	console.log("set destination");
 	destinationName = loc;
 	console.log(destinationName);
-	initiate_geolocation(true);
+	initiate_geolocation();
 	console.log("geolocation initiated");
 	showDestination();
 }
