@@ -275,7 +275,7 @@ function initViews() {
         console.debug("Clicked map for item id " + item.get("id"));
         $.mobile.changePage("#directions");
         var loc = item.get("location");
-        //setDestination(loc);
+        setDestination(loc);
         // TODO: Implement map show
       }
     },
