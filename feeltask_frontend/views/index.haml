@@ -12,12 +12,11 @@
  
   %ul#todosList(data-role="listview" data-theme="c")
     %li.animated.bounceInLeft Loading todos, please wait...
-  #basic_help
-    %h2 Help
-    %ul
-      %li Swipe right = mark as done
-      %li Swipe left = Get operations
-      %li Shake = reload todos
+      
+  %div(data-role="footer" data-position="fixed")
+    %a#showDirections(href="#" data-icon="arrow-l" data-transition="slide")Prev
+    %a#showDirections(href="#info" data-icon="info" data-transition="slide")Next
+    %a#showDirections(href="#" data-icon="arrow-r" data-transition="slide")Next
 
 /Start edit page
 
@@ -54,15 +53,32 @@
       %a.day.name Sun
     #weeks
     
-#map(data-role="page" data-title="Show directions - Feeltask")
+  %div(data-role="footer" data-position="fixed")
+    %a#showDirections(href="#" data-icon="arrow-l" data-transition="slide")Prev
+    %a#showDirections(href="#" data-icon="arrow-r" data-transition="slide")Next
+    
+#directions(data-role="page" data-title="Show directions - Feeltask")
   %div(data-role="header")
     %a(href="#home" data-icon="arrow-l" data-iconpos="notext" data-transition="slide" data-direction="reverse")Back
     %h2 Map
     
-  %div#mapview(data-role="content")
+  #mapview(data-role="content")
     %div#method
     %div#map
     %div#route
     
   %div(data-role="footer" data-position="fixed")
     %a#showDirections(href="#" data-icon="arrow-l" data-transition="slide")Show directions
+    
+#info(data-role="page" data-title="Information")
+  %div(data-role="header")
+    %a(href="#home" data-icon="arrow-l" data-iconpos="notext" data-transition="slide" data-direction="reverse")Back
+    %h2 Information
+    
+  %div(data-role="content")
+    #basic_help
+    %h2 Help
+    %ul
+      %li Swipe right = mark as done
+      %li Swipe left = Get operations
+      %li Shake = reload todos
