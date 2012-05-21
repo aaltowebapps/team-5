@@ -119,8 +119,8 @@ $(function () {
     return false;
   });
   
-  $('#showDirections').click(function () {
-  	  if ($('#route').is(':hidden')) {
+  $('#showRoute').click(function () {
+  	if ($('#route').is(':hidden')) {
   	    $('#map').slideUp();
 	    $('#route').slideDown();
 	    $('#showDirections').attr("data-theme", "b").removeClass("ui-btn-up-a").addClass("ui-btn-up-b");
